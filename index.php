@@ -16,7 +16,7 @@ if (isset($_POST["loginname"]) && isset($_POST["loginpasswort"]))
 
 if ($_SESSION["login"] != 1)
 {
-    include("login-formular.html");
+    include("login-form.html");
     exit;
 }
 
