@@ -1,31 +1,36 @@
 <?php
-session_start();
-
-$_logindaten = ARRAY("name"=>"admin", "passwort"=>"12345");
-
-if (isset($_POST["loginname"]) && isset($_POST["loginpasswort"]))
-{
-    if ($_logindaten["name"] == $_POST["loginname"] &&
-        $_logindaten["passwort"] == $_POST["loginpasswort"])
-    {
-        # Userdaten korrekt - User ist eingeloggt
-        # Login merken !
-        $_SESSION["login"] = 1;
-    }
-}
-
-if ($_SESSION["login"] != 1)
-{
-    include("login-form.html");
-    exit;
-}
-
-# User ist eingeloggt
-?>
-
 /**
  * Created by PhpStorm.
- * User: Nick
- * Date: 07.11.16
- * Time: 17:51
+ * User: Jan
+ * Date: 08.11.2016
  */
+session_start();
+include "connection.php";
+$login=$_POST["loginname"];
+$passwort=$_POST["passwort"];
+
+include "connection.php";
+$sql="SELECT * FROM user WHERE username='$login' AND passwort='$passwort'";
+echo $sql;
+$query=$db->query($sql);
+if ($query==false)
+{
+    die(var_export($db->errorinfo(), TRUE));
+}
+
+
+if ($zeile=$query->fetch(PDO::FETCH_OBJ))
+{
+    echo "query";
+    if ($zeile->passwort==$passwort) {
+        $_SESSION["loginname"] = $zeile->login;
+        header('Location: erfolg.php');
+    }
+
+}
+else
+{
+    echo "Nutzer nicht gefunden";
+}
+
+echo "<a href=\"login-form.html\">Zurück zum Login</a>";
