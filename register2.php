@@ -32,7 +32,7 @@ $passwort2=$_POST["passwort2"];
 $hash=md5($passwort1);
 
 if($username == 0) {
-    echo 'Geben sie ein Passwort ein!<br>';
+    echo 'Geben sie einen Namen ein!<br>';
 }
 
 if($passwort1 == 0) {
