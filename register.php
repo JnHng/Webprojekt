@@ -12,9 +12,9 @@
 <form class="register" method="POST" action="register.php">
     <b>Registrieren:</b><br>
     <br>
-    <input name="loginname" placeholder="Ihr Username:" type=text><br>
-    <input name="loginpasswort" placeholder="Ihr Passwort:" type=password><br>
-    <input name="loginpasswort2" placeholder="Passwort wiederholt:" type=password><br>
+    <input name="username" placeholder="Ihr Username:" type=text><br>
+    <input name="passwort1" placeholder="Ihr Passwort:" type=password><br>
+    <input name="passwort2" placeholder="Passwort wiederholt:" type=password><br>
     <br>
     <input type=submit name=submit value="Registrieren">
 </form>

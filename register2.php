@@ -9,7 +9,7 @@
 <body>
 
 
-<form class="register" method="POST" action="register2.php">
+<form class="register" method="POST" action="register2.php?submit=1">
     <b>Registrieren:</b><br>
     <br>
     <input name="username" placeholder="Ihr Username:" type=text><br>
@@ -25,50 +25,50 @@
 session_start();
 include "connection.php";
 
-$id=$_POST["id"];
-$username=$_POST["username"];
-$passwort1=$_POST["passwort1"];
-$passwort2=$_POST["passwort2"];
-$hash=md5($passwort1);
+if(isset($_GET["submit"])) {
+    $id = $_POST["id"];
+    $username = $_POST["username"];
+    $passwort1 = $_POST["passwort1"];
+    $passwort2 = $_POST["passwort2"];
+    $hash = md5($passwort1);
+    $error = false;
 
 
-if($username == 0) {
-    echo 'Geben sie einen Namen ein!<br>';
-}
-
-if($passwort1 == 0) {
-    echo 'Geben sie ein Passwort ein!<br>';
-}
-
-if($passwort2 == 0) {
-    echo 'Geben sie ein Passwort ein!<br>';
-}
-
-if($passwort1 != $passwort2) {
-    echo 'Die Passwörter stimmen nicht überein!';
-}
-
-
-
-
-if(!empty($username) && !empty($passwort1) && !empty($psswort2)) {
-    $statement = $db->prepare("SELECT * FROM user WHERE username = :username");
-    $result = $statement->execute(array('username' => $username));
-    $user = $statement->fetch();
-}
-
-
-if($passwort1==$passwort2) {
-    $passwort_hash = password_hash($passwort1, PASSWORD_DEFAULT);
-
-    $statement = $db->prepare("INSERT INTO user (username, passwort) VALUES (:username, :passwort1)");
-    $result = $statement->execute(array('username' => $username, 'passwort1' => $passwort_hash));
-
-    if($result) {
-        echo 'Herzlichen Glückwunsch! Sie haben sich soeben registriert! <a href="index.php">Zur Anmeldung</a>';
-    } else {
-        echo 'Ein Fehler ist aufgetreten!<br>';
+    if (isset($username)) {
+        echo 'Geben sie einen Namen ein!<br>';
+        $error = true;
     }
 
+    if (isset($passwort1)) {
+        echo 'Geben sie ein Passwort ein!<br>';
+        $error = true;
+    }
+
+    if (isset($passwort2)) {
+        echo 'Geben sie ein Passwort ein!<br>';
+        $error = true;
+    }
+
+
+    if (!empty($username) && !empty($passwort1) && !empty($passwort2)&& (!$error))  {
+        $statement = $db->prepare("SELECT * FROM user WHERE username = :username");
+        $result = $statement->execute(array('username' => $username));
+        $user = $statement->fetch();
+    }
+
+
+    if (!empty($username) && !empty($passwort1) && !empty($passwort2)&& (!$error) &&($passwort1 == $passwort2)) {
+        $passwort_hash = password_hash($passwort1, PASSWORD_DEFAULT);
+
+        $statement = $db->prepare("INSERT INTO user (username, passwort) VALUES (:username, :passwort1)");
+        $result = $statement->execute(array('username' => $username, 'passwort1' => $passwort_hash));
+
+        if ($result) {
+            echo 'Herzlichen Glückwunsch! Sie haben sich soeben registriert! <a href="index.php">Zur Anmeldung</a>';
+        } else {
+            echo 'Ein Fehler ist aufgetreten!<br>';
+        }
+
+    }
 }
 ?>
