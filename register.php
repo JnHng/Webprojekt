@@ -31,7 +31,7 @@ $passwort2=$_POST["passwort2"];
 $hash=md5($passwort1);
 
 if($username == 0) {
-    echo 'Geben sie ein Passwort ein!<br>';
+    echo 'Geben sie einen Namen ein!<br>';
 }
 
 if($passwort1 == 0) {
@@ -61,7 +61,7 @@ if(!empty($username) && !empty($passwort1) && !empty($psswort2)) {
 
     if ($passwort1 == $passwort2) {
         try {
-            $stmt = $db->prepare("INSERT INTO dbuser (user, passwort) VALUES (:user, :hash)");
+            $stmt = $db->prepare("INSERT INTO user (user, passwort) VALUES (:user, :hash)");
             $stmt->bindParam(':username', $username, PDO::PARAM_STR);
             $stmt->bindParam(':hash', $hash, PDO::PARAM_STR);
             $stmt->execute();

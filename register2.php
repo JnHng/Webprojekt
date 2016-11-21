@@ -9,12 +9,12 @@
 <body>
 
 
-<form class="register" method="POST" action="register.php">
+<form class="register" method="POST" action="register2.php">
     <b>Registrieren:</b><br>
     <br>
-    <input name="loginname" placeholder="Ihr Username:" type=text><br>
-    <input name="loginpasswort" placeholder="Ihr Passwort:" type=password><br>
-    <input name="loginpasswort2" placeholder="Passwort wiederholt:" type=password><br>
+    <input name="username" placeholder="Ihr Username:" type=text><br>
+    <input name="passwort1" placeholder="Ihr Passwort:" type=password><br>
+    <input name="passwort2" placeholder="Passwort wiederholt:" type=password><br>
     <br>
     <input type=submit name=submit value="Registrieren">
 </form>
@@ -30,6 +30,7 @@ $username=$_POST["username"];
 $passwort1=$_POST["passwort1"];
 $passwort2=$_POST["passwort2"];
 $hash=md5($passwort1);
+
 
 if($username == 0) {
     echo 'Geben sie einen Namen ein!<br>';
@@ -56,7 +57,7 @@ if(!empty($username) && !empty($passwort1) && !empty($psswort2)) {
     $user = $statement->fetch();
 }
 
-//Keine Fehler, wir können den Nutzer registrieren
+
 if($passwort1==$passwort2) {
     $passwort_hash = password_hash($passwort1, PASSWORD_DEFAULT);
 
