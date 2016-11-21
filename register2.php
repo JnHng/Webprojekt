@@ -69,6 +69,7 @@ if(isset($_GET["submit"])) {
             echo 'Ein Fehler ist aufgetreten!<br>';
         }
 
+
     }
 }
 ?>
