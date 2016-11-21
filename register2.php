@@ -50,6 +50,8 @@ if(isset($_GET["submit"])) {
     }
 
 
+
+
     if (!empty($username) && !empty($passwort1) && !empty($passwort2)&& (!$error))  {
         $statement = $db->prepare("SELECT * FROM user WHERE username = :username");
         $result = $statement->execute(array('username' => $username));
