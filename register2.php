@@ -34,44 +34,31 @@ if(isset($_GET["submit"])) {
     $error = false;
 
 
-    if (isset($username)) {
-        echo 'Geben sie einen Namen ein!<br>';
-        $error = true;
-    }
-
-    if (isset($passwort1)) {
-        echo 'Geben sie ein Passwort ein!<br>';
-        $error = true;
-    }
-
-    if (isset($passwort2)) {
-        echo 'Geben sie ein Passwort ein!<br>';
-        $error = true;
-    }
-
-
-
-
-    if (!empty($username) && !empty($passwort1) && !empty($passwort2)&& (!$error))  {
-        $statement = $db->prepare("SELECT * FROM user WHERE username = :username");
+    if (!empty($username) && !empty($passwort1) && !empty($passwort2) && (!$error) && ($passwort1 == $passwort2)) {
+        $statement = $db->prepare("SELECT username FROM user WHERE username = :username");
         $result = $statement->execute(array('username' => $username));
         $user = $statement->fetch();
-    }
 
 
-    if (!empty($username) && !empty($passwort1) && !empty($passwort2)&& (!$error) &&($passwort1 == $passwort2)) {
-        $passwort_hash = password_hash($passwort1, PASSWORD_DEFAULT);
 
-        $statement = $db->prepare("INSERT INTO user (username, passwort) VALUES (:username, :passwort1)");
-        $result = $statement->execute(array('username' => $username, 'passwort1' => $passwort_hash));
+            /*$passwort_hash = password_hash($passwort1, PASSWORD_DEFAULT);*/
 
-        if ($result) {
-            echo 'Herzlichen Glückwunsch! Sie haben sich soeben registriert! <a href="index.php">Zur Anmeldung</a>';
-        } else {
-            echo 'Ein Fehler ist aufgetreten!<br>';
-        }
+        $stmt = $db ->prepare("INSERT INTO user (id, username, passwort, email, profilbild)
+VALUES('', :username,:passwort1 , '', '')");
+        $stmt ->bindParam(':username', $username, PDO::PARAM_STR);
+        $stmt ->bindParam(':passwort1', $passwort1, PDO::PARAM_STR);
+        $stmt ->execute();
+
+            if ($result) {
+                echo 'Herzlichen Glückwunsch! Sie haben sich soeben registriert! <a href="login-form.html">Zur Anmeldung</a>';
+            } else {
+                echo 'Ein Fehler ist aufgetreten!<br>';
+            }
 
 
+
+    }else {
+        echo "Bitte alle Felder wie angegeben ausfüllen!";
     }
 }
 ?>
