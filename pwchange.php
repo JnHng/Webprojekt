@@ -28,7 +28,7 @@
 
 <?php
 
-include "connection.php";
+include "conn.php";
 
 $id = ["id"];
 $passwort1 = $_POST["passwort1"];
