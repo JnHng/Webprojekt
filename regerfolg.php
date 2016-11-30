@@ -32,12 +32,24 @@ if(isset($_GET["submit"])) {
     $error = false;
 
 
+
     if (!empty($username) && !empty($passwort1) && !empty($passwort2) && (!$error) && ($passwort1 == $passwort2)) {
-        $statement = $db->prepare("SELECT username FROM nutzer WHERE username = :username");
-        $result = $statement->execute(array('username' => $username));
-        $user = $statement->fetch();
+
+        try {
+
+        $stmt = $db->prepare("SELECT username FROM nutzer WHERE username = :username");
+        $result = $stmt->execute(array('username' => $username));
+        $user = $stmt->fetchAll();
+        $anzahl_user = $stmt->rowCount();
+        unset ($stmt);
 
 
+
+        }
+        catch(PDOException $e) {
+            echo $e->getMessage();
+            die();
+        }
 
         /*$passwort_hash = password_hash($passwort1, PASSWORD_DEFAULT);*/
 
@@ -48,12 +60,15 @@ VALUES(:username,:passwort1)");
             $stmt ->bindParam(':username', $username, PDO::PARAM_STR);
             $stmt ->bindParam(':passwort1', $passwort1, PDO::PARAM_STR);
             $stmt ->execute();
+            unset($stmt);
 
         }
         catch(PDOException $e) {
             echo $e->getMessage();
             die();
         }
+
+
 
         if ($result) {
             echo 'Herzlichen Glückwunsch! Sie haben sich soeben registriert! <a href="login-form.html">Zur Anmeldung</a>';
@@ -67,4 +82,5 @@ VALUES(:username,:passwort1)");
         echo "Bitte alle Felder wie angegeben ausfüllen!";
     }
 }
+
 ?>
