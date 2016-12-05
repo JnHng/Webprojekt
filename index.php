@@ -5,13 +5,17 @@
  * Date: 08.11.2016
  */
 session_start();
-include "connection.php";
+include "conn.php";
 $login=$_POST["loginname"];
-$passwort=$_POST["passwort"];
+$passwort=$_POST["loginpasswort"];
+$hash = md5($passwort);
 
 include "connection.php";
-$sql="SELECT * FROM user WHERE username='$login' AND passwort='$passwort'";
-echo $sql;
+
+if(!empty($login) && !empty($passwort)) {
+
+$sql="SELECT * FROM nutzer WHERE username='$login' AND passwort='$passwort'";
+/* echo $sql; */
 $query=$db->query($sql);
 if ($query==false)
 {
@@ -23,14 +27,19 @@ if ($zeile=$query->fetch(PDO::FETCH_OBJ))
 {
     echo "query";
     if ($zeile->passwort==$passwort) {
-        $_SESSION["loginname"] = $zeile->login;
+        $_SESSION["loginname"] = $zeile->username;
+        echo $_SESSION["loginname"];
         header('Location: erfolg.php');
     }
 
 }
 else
 {
-    echo "Nutzer nicht gefunden";
+    echo "Nutzer nicht gefunden! ";
 }
 
-echo "<a href=\"login-form.html\">Zurück zum Login</a>";
+echo "<a href=\"login-form.html\">Zurück zum Login!</a>";
+
+}  else {
+    echo "Bitte alle Felder ausfüllen!";
+}
