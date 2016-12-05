@@ -8,7 +8,7 @@ session_start();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Registrieren</title>
+    <title>Passwort ändern</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -29,10 +29,11 @@ session_start();
 
 include "conn.php";
 
-if (isset ($_GET[submit])) {
+if (isset ($_POST["submit"])) {
 
-    $id = ["id"];
-    $id = $_SESSION['id'];
+    /* $id = ["id"];
+    $id = $_SESSION['id']; */
+
     $login = $_SESSION['loginname'];
     $passwort1 = $_POST["passwort1"];
     $passwort2 = $_POST["passwort2"];
@@ -41,31 +42,30 @@ if (isset ($_GET[submit])) {
     echo $login;
 
 
-    if (isset($passwort1)) {
-
-        if ($passwort1 != "" && $passwort2 != "" && $passwort1 == $passwort2) {
+        if (!empty($passwort1) && !empty($passwort2) && $passwort1 == $passwort2) {
 
             try {
-                $statement = $db->prepare("UPDATE nutzer SET passwort = :passwort1 WHERE username = :login");
+        $update = $db->prepare("UPDATE nutzer SET passwort = :passwort1 WHERE username = :login");
 
 
-                $statement->bindParam(':passwort1', $passwort1, PDO::PARAM_STR);
-                $statement->bindValue(':login', $_SESSION['loginname'], PDO::PARAM_INT);
-                $statement->execute();;
-                unset ($statement);
-                echo "Ihr Passwort wurde erfolgreich geändert!$login, $passwort1<br>";
+        $update->bindParam(':passwort1', $passwort1, PDO::PARAM_STR);
+        $update->bindParam(':login', $_SESSION['loginname'], PDO::PARAM_STR);
+        $update->execute();
+        unset ($update);
 
-                /* $statement->execute(array("passwort1" => $passwort1, "id" => $id));
-                 unset ($statement);
-                 echo "Ihr Passwort wurde erfolgreich geändert!<br>"; */
-            } catch (PDOException $e) {
-                echo $e->getMessage();
-            }
-        } else {
-            echo "Passwörter müssen identisch sein!<br>";
-        }
+        echo "Ihr Passwort wurde erfolgreich geändert!$login, $passwort1<br>";
 
+        /* $statement->execute(array("passwort1" => $passwort1, "id" => $id));
+         unset ($statement);
+         echo "Ihr Passwort wurde erfolgreich geändert!<br>"; */
+    } catch (PDOException $e) {
+        echo $e->getMessage();
     }
+} else {
+    echo "Passwörter müssen identisch sein!<br>";
+}
+
+
 }
 
 ?>
