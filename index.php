@@ -35,7 +35,6 @@ if ($zeile=$query->fetch(PDO::FETCH_OBJ))
 }
 else
 
-
 {
     echo "Nutzer nicht gefunden! ";
 }
