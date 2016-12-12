@@ -37,7 +37,7 @@ if (isset ($_POST["submit"])) {
     $login = $_SESSION['loginname'];
     $passwort1 = $_POST["passwort1"];
     $passwort2 = $_POST["passwort2"];
-    /* $hash = md5($passwort1); */
+    $hash = md5($passwort1);
 
     echo $login;
 
@@ -45,15 +45,15 @@ if (isset ($_POST["submit"])) {
         if (!empty($passwort1) && !empty($passwort2) && $passwort1 == $passwort2) {
 
             try {
-        $update = $db->prepare("UPDATE nutzer SET passwort = :passwort1 WHERE username = :login");
+        $update = $db->prepare("UPDATE nutzer SET passwort = :hash WHERE username = :login");
 
 
-        $update->bindParam(':passwort1', $passwort1, PDO::PARAM_STR);
+        $update->bindParam(':hash', $hash, PDO::PARAM_STR);
         $update->bindParam(':login', $_SESSION['loginname'], PDO::PARAM_STR);
         $update->execute();
         unset ($update);
 
-        echo "Ihr Passwort wurde erfolgreich geändert!$login, $passwort1<br>";
+        echo "Ihr Passwort wurde erfolgreich geändert!$login, $hash<br>";
 
         /* $statement->execute(array("passwort1" => $passwort1, "id" => $id));
          unset ($statement);
