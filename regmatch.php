@@ -37,11 +37,11 @@ if(isset($_GET["submit"])) {
 
         try {
 
-            $stmt = $db->prepare("SELECT username FROM nutzer WHERE username = :username");
-            $result = $stmt->execute(array('username' => $username));
-            /* $user = $stmt->fetchAll();
-            $anzahl_user = $stmt->rowCount(); */
-            $nutzer = $stmt->fetch(PDO::FETCH_ASSOC);
+            $reg = $db->prepare("SELECT username FROM nutzer WHERE username = :username");
+            $result = $reg->execute(array('username' => $username));
+            /* $user = $reg->fetchAll();
+            $anzahl_user = $reg->rowCount(); */
+            $nutzer = $reg->fetch(PDO::FETCH_ASSOC);
 
             if($nutzer !== false) {
                 echo 'Dieser Username ist bereits vergeben. Geben Sie einen anderen Namen ein.<br>';
@@ -62,12 +62,12 @@ if(isset($_GET["submit"])) {
 
             try {
 
-                $stmt = $db->prepare("INSERT INTO nutzer (username, passwort)
-VALUES(:username,:passwort1)");
-                $stmt->bindParam(':username', $username, PDO::PARAM_STR);
-                $stmt->bindParam(':passwort1', $passwort1, PDO::PARAM_STR);
-                $stmt->execute();
-                unset($stmt);
+                $reg = $db->prepare("INSERT INTO nutzer (username, passwort)
+VALUES(:username,:hash)");
+                $reg->bindParam(':username', $username, PDO::PARAM_STR);
+                $reg->bindParam(':hash', $hash, PDO::PARAM_STR);
+                $reg->execute();
+                unset($reg);
 
             } catch (PDOException $e) {
                 echo $e->getMessage();
