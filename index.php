@@ -29,7 +29,7 @@ if ($zeile=$query->fetch(PDO::FETCH_OBJ))
     if ($zeile->passwort==$passwort) {
         $_SESSION["loginname"] = $zeile->username;
         echo $_SESSION["loginname"];
-        header('Location: erfolg.php');
+        header('Location: profil.php');
     }
 
 }
