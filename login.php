@@ -46,7 +46,7 @@ if(isset($_GET["submit"])) {
             if ($zeile->passwort == $hash && $zeile->username == $login) {
                 $_SESSION["loginname"] = $zeile->username;
                 echo $_SESSION["loginname"];
-                header('Location: erfolg.php');
+                header('Location: profil.php');
             }
 
         } else {
@@ -56,7 +56,7 @@ if(isset($_GET["submit"])) {
         echo "Gib einen anderen Nutzer ein!";
 
     } else {
-        echo "Bitte alle Felder ausfüllen!";
+        echo "Bitte alle Felder ausfï¿½llen!";
     }
 }
 
