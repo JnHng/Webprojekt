@@ -18,7 +18,6 @@
 
 include "conn.php";
 
-
 $sql = "SELECT name FROM files";
 foreach ($db->query($sql) as $row) {
     echo "<br /> $row[name].<br />";
