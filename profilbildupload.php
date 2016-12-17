@@ -30,8 +30,8 @@ if(function_exists('exif_imagetype')) { //exif_imagetype erfordert die exif-Erwe
 //Pfad zum Upload
 $new_path = $upload_folder.$filename.'.'.$extension;
 
-//Neuer Dateiname falls die Datei bereits existiert
-if(file_exists($new_path)) { //Falls Datei existiert, hänge eine Zahl an den Dateinamen
+//falls die Datei bereits existiert
+if(file_exists($new_path)) {
     die ("Datei existiert bereits!");
 }
 
