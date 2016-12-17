@@ -4,7 +4,7 @@
 
     <title>Dateien</title>
     <meta charset="UTF-8">
-    <?php include "session.php"; ?>
+    <?php include "ses2.php"; ?>
 
 </head>
 
@@ -16,9 +16,16 @@
  * Time: 02:01
  */
 
+include "conn.php";
 
+$sql = "SELECT name FROM files";
+foreach ($db->query($sql) as $row) {
+    echo "<br /> $row[name].<br />";
 
-echo "Dateien<br/><br />";
+}
+?>
+
+echo "'s Dateien<br/><br />";
 
 
 echo "Hier geht es zur <br /><a href=\"abmelden.php\"> Abmeldung!</a><br />";
