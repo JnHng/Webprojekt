@@ -11,7 +11,7 @@ if(isset($_SESSION['loginname'])) {
 }
 elseif (!isset($_SESSION['loginname'])) {
 
-    echo 'Bitte erst <a href="login-form.html">einloggen!</a>';
+    die ('Bitte erst <a href="login-form.html">einloggen!</a>');
 
 }
 
