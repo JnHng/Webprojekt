@@ -15,7 +15,7 @@ $info=$query->fetch(PDO::FETCH_OBJ);
 <table width="398" border="0" align="center" cellpadding="0">
     <tr>
         <td height="26" colspan="2">Dein Profil </td>
-        <td><div align="right"><a href="login.php">logout</a></div></td>
+        <td><div align="right"><a href="login.php">Logout</a></div></td>
         <td><div align="right"><a href="bearbeiten.php">bearbeiten</a></div></td>
     </tr>
     <tr>
