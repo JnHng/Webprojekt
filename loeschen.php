@@ -50,14 +50,14 @@ if (isset ($_POST["Ja"])) {
     $login = $_SESSION['loginname'];
 
     try {
-        $statement = $db->prepare("DELETE FROM nutzer WHERE username = :login");
+        $loesch = $db->prepare("DELETE FROM nutzer WHERE username = :login");
 
 
-        $statement->bindParam(':login', $_SESSION['loginname'], PDO::PARAM_STR);
+        $loesch->bindParam(':login', $_SESSION['loginname'], PDO::PARAM_STR);
 
 
-        $statement->execute();
-        unset ($statement);
+        $loesch->execute();
+        unset ($loesch);
 
         echo "Say goodbye as we dance with the devil tonight! <br>";
 

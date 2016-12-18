@@ -5,6 +5,7 @@ $dbuser="nl035";
 $dbpass="FahNae5ooR";
 
 $db = new PDO($dsn, $dbuser, $dbpass);
+/*setAttributes neu hinzugefügt*/
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 ?>
