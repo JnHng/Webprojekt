@@ -12,9 +12,10 @@ session_start();
 include "conn.php";
 
 $login = $_SESSION['loginname'];
-$bild = $_SESSION['profilbild'];
+$datei = $_SESSION['profilbild'];
 
 if(isset($_POST['submit'])) {
+
 
 
     $datei = $_FILES['bilddatei']['name'];
@@ -120,7 +121,7 @@ if(isset($_POST['submit'])) {
         /*  echo "query";*/
         if ($zeile->profilbild == $datei && $zeile->username == $login) {
             $_SESSION["loginname"] = $zeile->username;
-            $_SESSION["profilbild"] = $zeile->username;
+            $_SESSION["profilbild"] = $zeile->profilbild;
               echo ("  klappt: $datei  ");
         }
 
@@ -149,9 +150,11 @@ if(isset($_POST['submit'])) {
         <td><div align="right"><a href="login.php">Logout</a></div></td>
     </tr>
     <tr>
-        <td width="129" rowspan="5"><img src="<?php echo $ordner_datei; ?>" width="129" height="129"/></td>
+        <td width="129" rowspan="5"><img src="<?php echo $ordner . $datei ?>" width="129" height="129"/></td>
         <td width="82" valign="top"><div align="left">Username:</div></td>
         <td width="165" valign="top"><?php echo "$login" ?></td>
+        <td width="82" valign="top"><div align="left">Bildname:</div></td>
+        <td width="165" valign="top"><?php echo "$datei" ?></td>
     </tr>
 </table>
 <p align="center"><a href="login.php"></a></p>
