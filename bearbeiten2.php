@@ -13,10 +13,12 @@ session_start();
 
 include "conn.php";
 
+$login = $_SESSION['loginname'];
+$datei = $_SESSION['profilbild'];
 
 if(isset($_POST['submit'])) {
 
-    $login = $_SESSION['loginname'];
+
 
     $datei = $_FILES['bilddatei']['name'];
     $tmp_datei = $_FILES['bilddatei']['tmp_name'];
@@ -121,7 +123,7 @@ if(isset($_POST['submit'])) {
         /*  echo "query";*/
         if ($zeile->profilbild == $datei && $zeile->username == $login) {
             $_SESSION["loginname"] = $zeile->username;
-            $_SESSION["profilbild"] = $zeile->username;
+            $_SESSION["profilbild"] = $zeile->profilbild;
             echo ("  klappt: $datei  ");
         }
 
@@ -131,6 +133,9 @@ if(isset($_POST['submit'])) {
     else {
         echo "Fehler";
     }
+
+    $login = $_SESSION['loginname'];
+    $datei = $_SESSION['profilbild'];
 
     // $sehen = fopen($ordner_datei, "r") or die("File nicht zu öffnen!");
     // echo fread($sehen, filesize($ordner_datei));

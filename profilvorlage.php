@@ -3,7 +3,7 @@
 session_start();
 
 $login = $_SESSION['loginname'];
-$bild = $_SESSION['profilbild'];
+$datei = $_SESSION['profilbild'];
 
 $datei = $_FILES['bilddatei']['name'];
 $tmp_datei = $_FILES['bilddatei']['tmp_name'];
@@ -24,7 +24,7 @@ $sql="SELECT * FROM nutzer "; //Wie bekomme ich den Namen aus der DB? Hab gerade
 $query=$db->query($sql);
 $info=$query->fetch(PDO::FETCH_OBJ);
 
-$user = $_SESSION['loginname'];
+$login = $_SESSION['loginname'];
 echo $_SESSION['profilbild'];
 
 ?>
@@ -35,9 +35,11 @@ echo $_SESSION['profilbild'];
         <td><div align="right"><a href="bearbeiten2.php">bearbeiten</a></div></td>
     </tr>
 
-        <td width="129" rowspan="5"><img src="<?php echo $ordner . $bild; ?>" width="129" height="129"/></td>
+        <td width="129" rowspan="5"><img src="<?php echo $ordner . $_SESSION[profilbild] ?>" width="129" height="129"/></td>
         <td width="82" valign="top"><div align="left">Username:</div></td>
-        <td width="165" valign="top"><?php echo "$user" ?></td>
+        <td width="165" valign="top"><?php echo "$login" ?></td>
+        <td width="82" valign="top"><div align="left">Bildname:</div></td>
+        <td width="165" valign="top"><?php echo "$_SESSION[profilbild]" ?></td>
     </tr>
 </table>
 <p align="center"><a href="login.php"></a></p>
