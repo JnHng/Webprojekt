@@ -63,7 +63,7 @@ if(isset($_POST['submit'])) {
     // $_SESSION['loginname'].jpg;
 
     if ($size > $max) {
-        echo "Zu gro�!";
+        echo "Zu gross!";
         exit();
     }
 
