@@ -22,7 +22,7 @@ $dateiform = pathinfo($ordner_datei, PATHINFO_EXTENSION);
     <tr>
         <td height="26" colspan="2">Dein Profil </td>
         <td><div align="right"><a href="login.php">Logout</a></div></td>
-        <td><div align="right"><a href="bearbeiten2.php">bearbeiten</a></div></td>
+        <td><div align="right"><a href="bearbeiten2.php">Bearbeiten</a></div></td>
     </tr>
 
         <td width="129" rowspan="5"><img src="<?php echo $ordner . $bild; ?>" width="129" height="129"/></td>
