@@ -3,7 +3,7 @@
     <input type="submit" name="submit" value="Hochladen">
 
 
-    <div align="right"><a href="profilvorlage.php">Zurück zum Profil</a></div>
+    <div align="right"><a href="profilvorlage.php">Zurï¿½ck zum Profil</a></div>
 </form>
 
 
@@ -32,15 +32,12 @@ if(isset($_POST['submit'])) {
     $dateiform = pathinfo($ordner_datei, PATHINFO_EXTENSION);
 
     if (empty($datei)) {
-        echo "Wählen Sie eine Datei aus";
+        echo "Wï¿½hlen Sie eine Datei aus";
         exit();
     }
 
-    if($test !== false) {
+    if($test == false) {
         $test = getimagesize($tmp_datei);
-        echo "Ist ein Bild! - ";
-
-    } else {
         echo "Ist KEIN Bild.";
         exit();
 
@@ -52,28 +49,28 @@ if(isset($_POST['submit'])) {
     } */
 
     /*  if (in_array(exif_imagetype($tmp_datei), array(IMAGETYPE_GIF, IMAGETYPE_GIF, IMAGETYPE_GIF))) {
-         echo  "Nur folgende Formate können akzeptiert werden: JPG, JPEG und PNG.";
+         echo  "Nur folgende Formate kï¿½nnen akzeptiert werden: JPG, JPEG und PNG.";
      }
 
     */
 
     if($dateiform != "jpg" && $dateiform != "png" && $dateiform != "jpeg") {
-        echo "Nur folgende Formate können akzeptiert werden: JPG, JPEG und PNG.";
+        echo "Nur folgende Formate werden akzeptiert: JPG, JPEG und PNG.";
         exit();
     }
 
 
-    $_SESSION['loginname'].jpg;
+    // $_SESSION['loginname'].jpg;
 
     if ($size > $max) {
-        echo "Zu groß!";
+        echo "Zu groï¿½!";
         exit();
     }
 
 
     if (isset($datei)) {
 
-        echo "Ihr Bild: '" . basename($datei) . "' ";
+        echo "Ihr Bild: '" . basename($datei) . "' wurde erfolgreich hochgeladen";
 
     }
 
@@ -88,7 +85,7 @@ if(isset($_POST['submit'])) {
 
 
     if (move_uploaded_file($tmp_datei, $ordner . $datei)) {
-        echo 'Coolio: <a href="'.$ordner_datei.'">'.$ordner_datei.'</a>';
+        echo ' - Bild ansehen: <a href="'.$ordner_datei.'">'.$ordner_datei.'</a>';
         $up = $db->prepare("UPDATE nutzer SET profilbild = :ordner_datei WHERE username = :login");
         $up->bindParam(':ordner_datei', $datei, PDO::PARAM_STR);
         $up->bindParam(':login', $login, PDO::PARAM_STR);
@@ -124,20 +121,19 @@ if(isset($_POST['submit'])) {
         if ($zeile->profilbild == $datei && $zeile->username == $login) {
             $_SESSION["loginname"] = $zeile->username;
             $_SESSION["profilbild"] = $zeile->profilbild;
-            echo ("  klappt: $datei  ");
         }
 
 
     }
 
     else {
-        echo "Fehler";
+        echo "Fehler aufgetreten";
     }
 
     $login = $_SESSION['loginname'];
     $datei = $_SESSION['profilbild'];
 
-    // $sehen = fopen($ordner_datei, "r") or die("File nicht zu öffnen!");
+    // $sehen = fopen($ordner_datei, "r") or die("File nicht zu ï¿½ffnen!");
     // echo fread($sehen, filesize($ordner_datei));
     // fclose($sehen);
 
