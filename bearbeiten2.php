@@ -1,9 +1,9 @@
 <form action="bearbeiten2.php" method="post" enctype="multipart/form-data">
     <input type="file" name="bilddatei" id="bilddatei"><br>
-    <input type="submit" name="submit" value="Hochladen">
+    <input type="submit" name="submit" value="Hochladen"><br><br>
 
 
-    <div align="right"><a href="profilvorlage.php">Zurück zum Profil</a></div>
+    <div align="left"><a href="profilvorlage.php">Zurueck zum Profil</a></div>
 </form>
 
 
@@ -30,19 +30,17 @@ if(isset($_POST['submit'])) {
     $dateiform = pathinfo($ordner_datei, PATHINFO_EXTENSION);
 
     if (empty($datei)) {
-        echo "Wählen Sie eine Datei aus";
+        echo "Wï¿½hlen Sie eine Datei aus";
         exit();
     }
 
-    if($test !== false) {
+    if($test == false) {
         $test = getimagesize($tmp_datei);
-        echo "Ist ein Bild! - ";
-
-    } else {
-        echo "Ist KEIN Bild.";
-        exit();
+        echo "Die Datei ist KEIN Bild!";
+        exit ();
 
     }
+
 
     /* if (file_exists($ordner_datei)) {
         echo "File gibt es schon!";
@@ -50,28 +48,28 @@ if(isset($_POST['submit'])) {
     } */
 
     /*  if (in_array(exif_imagetype($tmp_datei), array(IMAGETYPE_GIF, IMAGETYPE_GIF, IMAGETYPE_GIF))) {
-         echo  "Nur folgende Formate können akzeptiert werden: JPG, JPEG und PNG.";
+         echo  "Nur folgende Formate kï¿½nnen akzeptiert werden: JPG, JPEG und PNG.";
      }
 
     */
 
     if($dateiform != "jpg" && $dateiform != "png" && $dateiform != "jpeg") {
-        echo "Nur folgende Formate können akzeptiert werden: JPG, JPEG und PNG.";
+        echo "Nur folgende Formate werden akzeptiert: JPG, JPEG und PNG.";
         exit();
     }
 
 
-    $_SESSION['loginname'].jpg;
+    //$_SESSION['loginname'].jpg;
 
     if ($size > $max) {
-        echo "Zu groß!";
+        echo "Zu groï¿½!";
         exit();
     }
 
 
     if (isset($datei)) {
 
-        echo "Ihr Bild: '" . basename($datei) . "' ";
+        echo "Ihr Bild: '" . basename($datei) . "' wurde erfolgreich hochgeladen.";
 
     }
 
@@ -122,17 +120,17 @@ if(isset($_POST['submit'])) {
         if ($zeile->profilbild == $datei && $zeile->username == $login) {
             $_SESSION["loginname"] = $zeile->username;
             $_SESSION["profilbild"] = $zeile->username;
-            echo ("  klappt: $datei  ");
+          //  echo ("  klappt: $datei  ");
         }
 
 
     }
 
     else {
-        echo "Fehler";
+        echo "Fehler ist eingetreten";
     }
 
-    // $sehen = fopen($ordner_datei, "r") or die("File nicht zu öffnen!");
+    // $sehen = fopen($ordner_datei, "r") or die("File nicht zu ï¿½ffnen!");
     // echo fread($sehen, filesize($ordner_datei));
     // fclose($sehen);
 
