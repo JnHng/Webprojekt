@@ -4,7 +4,7 @@
 
     <title>Dateien</title>
     <meta charset="UTF-8">
-    <?php include "ses2.php"; ?>
+    <?php // include "ses2.php"; ?>
 
 </head>
 
@@ -15,13 +15,10 @@
  * Date: 04.12.2016
  * Time: 02:01
  */
-
 include "conn.php";
-
 $sql = "SELECT name FROM files";
 foreach ($db->query($sql) as $row) {
     echo "<br /> $row[name].<br />";
-
 }
 ?>
 
