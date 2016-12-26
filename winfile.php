@@ -65,12 +65,12 @@ if(isset($_POST['submit'])) {
 
     if (move_uploaded_file($tmp_datei, $ordner_datei)) {
         echo 'Coolio: <a href="' . $ordner_datei . '">' . $ordner_datei . '</a>';
-        $up = $db->prepare("INSERT INTO files (name, typ, size, username) VALUES(:ordner_datei,:typ,:size,:login)");
-        $up->bindParam(':ordner_datei', $ordner_datei, PDO::PARAM_STR);
-        $up->bindParam(':typ', $typ, PDO::PARAM_STR);
-        $up->bindValue(':size', $size, PDO::PARAM_INT);
+        $sql = $db->prepare("INSERT INTO files (name, typ, size, username) VALUES(:ordner_datei,:typ,:size,:login)");
+        $sql->bindParam(':ordner_datei', $ordner_datei, PDO::PARAM_STR);
+        $sql->bindParam(':typ', $typ, PDO::PARAM_STR);
+        $sql->bindValue(':size', $size, PDO::PARAM_INT);
         $sql->bindParam(':login', $login, PDO::PARAM_STR);
-        $up->execute();
+        $sql->execute();
     } else {
         echo "Fehler!";
     }
