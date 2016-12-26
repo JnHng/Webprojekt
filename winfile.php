@@ -9,6 +9,8 @@
 session_start();
 include "conn.php";
 
+$login = $_SESSION['loginname'];
+    $filename = $_SESSION['filename'];
 
 if(isset($_POST['submit'])) {
 
@@ -18,13 +20,13 @@ if(isset($_POST['submit'])) {
     $size = $_FILES['bilddatei']['size'];
     $max = 2097152;
     $fehler = $_FILES['bilddatei']['error'];
-    $ordner = "/home/iz002/public_html/file/";
+    $ordner = "file/";
     $ordner_datei = ($ordner . basename($datei));
     $dateiname = pathinfo($ordner_datei, PATHINFO_FILENAME);
     $dateiform = pathinfo($ordner_datei, PATHINFO_EXTENSION);
 
     if (empty($datei)) {
-        echo "Wählen Sie eine Datei aus";
+        echo "WÃ¤hlen Sie eine Datei aus";
         exit();
     }
 
@@ -38,40 +40,47 @@ if(isset($_POST['submit'])) {
 
        } */
 
-    if (file_exists($ordner_datei)) {
+  /*  if (file_exists($ordner_datei)) {
         echo "File gibt es schon!";
         exit();
-    }
+   } */
 
     if ($size > $max) {
-        echo "Zu groß!";
+        echo "Zu groÃŸ!";
         exit();
     }
 
 
-    if (isset($datei)) {
+   /* if (isset($datei)) {
 
         echo "Ihr Bild: '" . basename($datei) . "' ";
 
-    }
+    } */
+    
+    $sql = "SELECT nutzer.username, files.name
+     FROM nutzer
+     RIGHT JOIN files
+     ON nutzer.username = files.username
+     ORDER BY files.name";
 
-    if (move_uploaded_file($tmp_datei, $ordner . $datei)) {
-        echo "Coolio!";
-        $up = $db->prepare("INSERT INTO files (name, typ, size) VALUES(:ordner_datei,:typ,:size)");
+    if (move_uploaded_file($tmp_datei, $ordner_datei)) {
+        echo 'Coolio: <a href="' . $ordner_datei . '">' . $ordner_datei . '</a>';
+        $up = $db->prepare("INSERT INTO files (name, typ, size, username) VALUES(:ordner_datei,:typ,:size,:login)");
         $up->bindParam(':ordner_datei', $ordner_datei, PDO::PARAM_STR);
         $up->bindParam(':typ', $typ, PDO::PARAM_STR);
         $up->bindValue(':size', $size, PDO::PARAM_INT);
+        $sql->bindParam(':login', $login, PDO::PARAM_STR);
         $up->execute();
     } else {
         echo "Fehler!";
     }
 
 
-    $sehen = fopen($ordner_datei, "r") or die("File nicht zu öffnen!");
+   /* $sehen = fopen($ordner_datei, "r") or die("File nicht zu Ã¶ffnen!");
     echo fread($sehen, filesize($ordner_datei));
     fclose($sehen);
 
-
+*/
 
 }
 ?>
