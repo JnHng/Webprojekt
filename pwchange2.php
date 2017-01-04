@@ -8,19 +8,19 @@ session_start();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Passwort ändern</title>
+    <title>Passwort Ã¤ndern</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 
 <form class="change" method="POST" action="pwchange2.php?submit=1">
-    <b>Passwort ändern:</b><br>
+    <b>Passwort Ã¤ndern:</b><br>
     <br>
     <input name="passwort1" placeholder="Neues Passwort:" type=password><br>
     <input name="passwort2" placeholder="Passwort wiederholen:" type=password><br>
     <br>
-    <input type=submit name=submit value="Passwort ändern">
+    <input type=submit name=submit value="Passwort Ã¤ndern">
 </form>
 </body>
 </html>
@@ -53,16 +53,16 @@ if (isset ($_POST["submit"])) {
         $update->execute();
         unset ($update);
 
-        echo "Ihr Passwort wurde erfolgreich geändert!$login, $hash<br>";
+        echo "Ihr Passwort wurde erfolgreich geÃ¤ndert!$login, $hash<br>";
 
         /* $statement->execute(array("passwort1" => $passwort1, "id" => $id));
          unset ($statement);
-         echo "Ihr Passwort wurde erfolgreich geändert!<br>"; */
+         echo "Ihr Passwort wurde erfolgreich geï¿½ndert!<br>"; */
     } catch (PDOException $e) {
         echo $e->getMessage();
     }
 } else {
-    echo "Passwörter müssen identisch sein!<br>";
+    echo "PasswÃ¶rter mÃ¼ssen identisch sein!<br>";
 }
 
 

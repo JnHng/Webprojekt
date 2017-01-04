@@ -20,7 +20,7 @@ $dateiform = pathinfo($ordner_datei, PATHINFO_EXTENSION);
 <table width="398" border="0" align="center" cellpadding="0">
     <tr>
         <td height="26" colspan="2">Dein Profil </td>
-        <td><div align="right"><a href="login.php">Logout</a></div></td>
+        <td><div align="right"><a href="abmelden.php">Logout</a></div></td>
         <td><div align="right"><a href="bearbeiten2.php">Bearbeiten</a></div></td>
     </tr>
 

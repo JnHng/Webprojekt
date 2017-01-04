@@ -4,7 +4,7 @@ session_start();
 /* include "conn.php"; */
 
 if(!isset($_SESSION['loginname'])) {
-    die('Bitte erst <a href="login-form.html">einloggen!</a>');
+    die('Bitte erst <a href="StartseiteNaked.html">einloggen!</a>');
 
 }
 else {

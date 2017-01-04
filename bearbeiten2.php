@@ -3,7 +3,7 @@
     <input type="submit" name="submit" value="Hochladen">
 
 
-    <div align="right"><a href="profilvorlage.php">Zur�ck zum Profil</a></div>
+    <div align="right"><a href="profilvorlage.php">Zurück zum Profil</a></div>
 </form>
 
 
@@ -32,11 +32,11 @@ if(isset($_POST['submit'])) {
     $dateiform = pathinfo($ordner_datei, PATHINFO_EXTENSION);
 
     if (empty($datei)) {
-        echo "W�hlen Sie eine Datei aus";
+        echo "Wählen Sie eine Datei aus";
         exit();
     }
 
-    if($test == false) {
+   /* -> Test ist nicht definiert - J. if($test == false) {
         $test = getimagesize($tmp_datei);
         echo "Ist KEIN Bild.";
         exit();

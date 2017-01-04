@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Registrieren</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
 
@@ -71,7 +71,7 @@ VALUES(:username,:passwort1)");
 
 
         if ($result) {
-            echo 'Herzlichen Glückwunsch! Sie haben sich soeben registriert! <a href="login-form.html">Zur Anmeldung</a>';
+            echo 'Herzlichen Glï¿½ckwunsch! Sie haben sich soeben registriert! <a href="login-form.html">Zur Anmeldung</a>';
         } else {
             echo 'Ein Fehler ist aufgetreten!<br>';
         }
@@ -79,7 +79,7 @@ VALUES(:username,:passwort1)");
 
 
     }else {
-        echo "Bitte alle Felder wie angegeben ausfüllen!";
+        echo "Bitte alle Felder wie angegeben ausfï¿½llen!";
     }
 }
 
