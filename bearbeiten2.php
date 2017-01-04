@@ -36,7 +36,7 @@ if(isset($_POST['submit'])) {
         exit();
     }
 
-    if($test == false) {
+   /* -> Test ist nicht definiert - J. if($test == false) {
         $test = getimagesize($tmp_datei);
         echo "Ist KEIN Bild.";
         exit();

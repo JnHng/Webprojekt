@@ -76,7 +76,7 @@ VALUES(:username,:hash)");
 
 
             if ($result) {
-                echo 'Herzlichen Glückwunsch! Sie haben sich soeben registriert! <a href="login-form.html">Zur Anmeldung</a>';
+                echo 'Herzlichen Glï¿½ckwunsch! Sie haben sich soeben registriert! <a href="login.php">Zur Anmeldung</a>';
             } else {
                 echo 'Ein Fehler ist aufgetreten!<br>';
             }
@@ -85,7 +85,7 @@ VALUES(:username,:hash)");
 
     }
     else {
-        echo "Bitte alle Felder wie angegeben ausfüllen!";
+        echo "Bitte alle Felder wie angegeben ausfï¿½llen!";
     }
 }
 
