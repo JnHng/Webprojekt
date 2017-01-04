@@ -78,6 +78,11 @@ if(isset($_POST['submit'])) {
             $sql->bindValue(':login', $login, PDO::PARAM_STR);
             $sql->execute();
 
+        $sql = $db->prepare("INSERT INTO nutzerfiles (username, name) VALUES(:login, :ordner_datei)");
+        $sql->bindValue(':login', $login, PDO::PARAM_STR);
+        $sql->bindParam(':ordner_datei', $ordner_datei, PDO::PARAM_STR);
+        $sql->execute();
+
         }
 
         else {
