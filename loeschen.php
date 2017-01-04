@@ -16,14 +16,14 @@ session_start();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Nutzer löschen</title>
+    <title>Nutzer lÃ¶schen</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 
 <form class="change" method="POST" action="">
-    <b>Wollen Sie ihr Profil wirklich unwiderruflich löschen?</b><br>
+    <b>Wollen Sie ihr Profil wirklich unwiderruflich lÃ¶schen?</b><br>
     <br>
     <input type=submit name="Ja" value="Ja! Verdammt nochmal, Ja! Vernichten Sie alle Beweise!">
     <br>
@@ -63,7 +63,7 @@ if (isset ($_POST["Ja"])) {
 
         /* $statement->execute(array("passwort1" => $passwort1, "id" => $id));
          unset ($statement);
-         echo "Ihr Passwort wurde erfolgreich geändert!<br>"; */
+         echo "Ihr Passwort wurde erfolgreich geï¿½ndert!<br>"; */
     } catch (PDOException $e) {
         echo $e->getMessage();
     }

@@ -11,9 +11,9 @@
 <form class="register" method="POST" action="regmatch.php?submit=1">
     <b>Registrieren:</b><br>
     <br>
-    <input name="username" placeholder="Ihr Username:" type=text><br>
-    <input name="passwort1" placeholder="Ihr Passwort:" type=password><br>
-    <input name="passwort2" placeholder="Passwort wiederholt:" type=password><br>
+    <input name="username" placeholder="Username" type=text><br>
+    <input name="passwort1" placeholder="Passwort" type=password><br>
+    <input name="passwort2" placeholder="Passwort wiederholen" type=password><br>
     <br>
     <input type=submit name=submit value="Registrieren">
 </form>
@@ -76,7 +76,7 @@ VALUES(:username,:hash)");
 
 
             if ($result) {
-                echo 'Herzlichen Gl�ckwunsch! Sie haben sich soeben registriert! <a href="login.php">Zur Anmeldung</a>';
+                echo 'Herzlichen Glückwunsch! Sie haben sich soeben registriert! <a href="login.php">Zur Anmeldung</a>';
             } else {
                 echo 'Ein Fehler ist aufgetreten!<br>';
             }

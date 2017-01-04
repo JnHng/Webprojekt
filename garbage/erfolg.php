@@ -8,5 +8,5 @@
 session_start();
 echo $_SESSION["loginname"];
 
-echo ' ist ein Erfolg! Hier gehts weiter zu den <a href="dateien.php">Dateien</a>!';
+echo ' ist ein Erfolg! Hier gehts weiter zu den <a href="../dateien.php">Dateien</a>!';
 

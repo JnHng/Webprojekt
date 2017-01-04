@@ -34,7 +34,7 @@
             echo "Nutzer nicht gefunden! ";
         }
 
-        echo "<a href=\"login-form.html\">Zurück zum Login!</a>";
+        echo ">Zurück zum Login!</a>";
 
     } else {
         echo "Bitte alle Felder ausfüllen!";

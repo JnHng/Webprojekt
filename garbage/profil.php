@@ -15,7 +15,7 @@ $info=$query->fetch(PDO::FETCH_OBJ);
 <table width="398" border="0" align="center" cellpadding="0">
     <tr>
         <td height="26" colspan="2">Dein Profil </td>
-        <td><div align="right"><a href="login.php">Logout</a></div></td>
+        <td><div align="right"><a href="../login.php">Logout</a></div></td>
         <td><div align="right"><a href="bearbeiten.php">bearbeiten</a></div></td>
     </tr>
     <tr>
@@ -24,4 +24,4 @@ $info=$query->fetch(PDO::FETCH_OBJ);
         <td width="165" valign="top"><?php echo "$info->username" ?></td>
     </tr>
 </table>
-<p align="center"><a href="login.php"></a></p>
+<p align="center"><a href="../login.php"></a></p>
