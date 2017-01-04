@@ -46,8 +46,13 @@ if(isset($_GET["submit"])) {
             if ($zeile->passwort == $hash && $zeile->username == $login) {
                 $_SESSION["loginname"] = $zeile->username;
                 $_SESSION["profilbild"] = $zeile->profilbild;
+                $_SESSION["text"] = $zeile->text;
                 echo $_SESSION["loginname"];
+
                 header('Location: erfolg.php');
+
+                //header('Location: profilvorlage.php');
+
             }
 
         } else {

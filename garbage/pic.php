@@ -17,11 +17,11 @@ $dateityp = pathinfo($_FILES['bilddatei']['name'], PATHINFO_EXTENSION);
 
 $dateiganz = $upload . $dateiname .".".$dateityp;
 
-$gültiger_dateityp = array('png', 'jpg', 'jpeg');
+$gueltiger_dateityp = array('png', 'jpg', 'jpeg');
 
 
-if(!in_array($dateityp, $gültiger_dateityp)) {
-    die("Keine zulässige Bilddatei.");
+if(!in_array($dateityp, $gueltiger_dateityp)) {
+    die("Keine zulï¿½ssige Bilddatei.");
 }
 
 if(isset($_FILES['bilddatei']['name'])) {
