@@ -14,6 +14,7 @@
     <br>
     <input type=submit name=submit value="Einloggen">
 </form>
+<p style = "text-align:center;"><a href="regmatch.php">Noch kein Nutzer? Jetzt registrieren!</a></p>
 </body>
 </html>
 
