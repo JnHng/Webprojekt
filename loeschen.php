@@ -25,11 +25,9 @@ session_start();
 <form class="change" method="POST" action="">
     <b>Wollen Sie ihr Profil wirklich unwiderruflich löschen?</b><br>
     <br>
-    <input type=submit name="Ja" value="Ja! Verdammt nochmal, Ja! Vernichten Sie alle Beweise!">
+    <input type=submit name="Ja" value="Ja, bitte.">
     <br>
-    <input type=submit name="Nein" value="Ich...ich bin noch nicht soweit...">
-</form>
-</body>
+    <input type=submit name="Nein" value="Nein, danke."
 </html>
 
 <?php
