@@ -31,9 +31,7 @@ if(isset($_GET["submit"])) {
                 $_SESSION["text"] = $zeile->text;
                 echo $_SESSION["loginname"];
 
-                header('Location: erfolg.php');
-
-                //header('Location: profilvorlage.php');
+                header('Location: profilvorlage.php');
 
             }
 

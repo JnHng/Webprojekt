@@ -9,7 +9,7 @@ session_start();
 include "connection.php";
 
 session_destroy();
-echo ("Bis zum n‰chsten Mal! <br> <a href=login-form.html>Zur Startseite</a>");
+echo ("Bis zum n√§chsten Mal! <br> <a href=login-form.html>Zur Startseite</a>");
 ?>
 </body>
 

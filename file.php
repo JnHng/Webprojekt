@@ -22,11 +22,11 @@ if(isset($_GET["submit"])) {
 
     $dateiganz = $upload . $dateiname . "." . $dateiform;
 
-    $gültige_dateiform = array('png', 'jpg', 'jpeg');
+    $gÃ¼ltige_dateiform = array('png', 'jpg', 'jpeg');
 
 
-    if (!in_array($dateiform, $gültige_dateiform)) {
-        die("Keine zulässige Bilddatei.");
+    if (!in_array($dateiform, $gÃ¼ltige_dateiform)) {
+        die("Keine zulï¿½ssige Bilddatei.");
 
     }
 

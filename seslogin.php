@@ -64,10 +64,4 @@ if(isset($_GET["submit"])) {
     }
 }
 
-?><?php
-/**
- * Created by PhpStorm.
- * User: Illia
- * Date: 21.12.2016
- * Time: 16:37
- */
+?>

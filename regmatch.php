@@ -85,7 +85,7 @@ VALUES(:username,:hash)");
 
     }
     else {
-        echo "Bitte alle Felder wie angegeben ausf�llen!";
+        echo "Bitte alle Felder wie angegeben ausfüllen!";
     }
 }
 

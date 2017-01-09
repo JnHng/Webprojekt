@@ -32,7 +32,7 @@ if(isset($_POST['submit'])) {
 
 
     if (empty($datei)) {
-        echo "Wählen Sie eine Datei aus";
+        echo "WÃ¤hlen Sie eine Datei aus";
         exit();
     }
 
@@ -50,7 +50,7 @@ if(isset($_POST['submit'])) {
 //    }
 
     if ($size > $max) {
-        echo "Zu groß!";
+        echo "Zu groÃŸ!";
         exit();
     }
     if (isset($datei)) {
@@ -101,7 +101,7 @@ if(isset($_POST['submit'])) {
 //echo $zitate;
 
 
-    /* $sehen = fopen($ordner_datei, "r") or die("File nicht zu öffnen!");
+    /* $sehen = fopen($ordner_datei, "r") or die("File nicht zu Ã¶ffnen!");
     echo fread($sehen, filesize($ordner_datei));
     fclose($sehen); */
 }

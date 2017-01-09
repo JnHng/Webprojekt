@@ -57,7 +57,7 @@ if (isset ($_POST["submit"])) {
 
         /* $statement->execute(array("passwort1" => $passwort1, "id" => $id));
          unset ($statement);
-         echo "Ihr Passwort wurde erfolgreich ge�ndert!<br>"; */
+         echo "Ihr Passwort wurde erfolgreich geändert!<br>"; */
     } catch (PDOException $e) {
         echo $e->getMessage();
     }
