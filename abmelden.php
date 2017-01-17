@@ -6,10 +6,10 @@
 <?php
 session_start();
 
-include "connection.php";
+include "conn.php";
 
 session_destroy();
-echo ("Bis zum nächsten Mal! <br> <a href=login-form.html>Zur Startseite</a>");
+echo ("Bis zum nächsten Mal! <br> <a href=StartseiteNaked.html>Zur Startseite</a>");
 ?>
 </body>
 
