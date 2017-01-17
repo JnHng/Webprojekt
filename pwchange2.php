@@ -39,8 +39,6 @@ if (isset ($_POST["submit"])) {
     $passwort2 = $_POST["passwort2"];
     $hash = md5($passwort1);
 
-    echo $login;
-
 
         if (!empty($passwort1) && !empty($passwort2) && $passwort1 == $passwort2) {
 
@@ -53,7 +51,7 @@ if (isset ($_POST["submit"])) {
         $update->execute();
         unset ($update);
 
-        echo "Ihr Passwort wurde erfolgreich geändert!$login, $hash<br>";
+        echo "Ihr Passwort wurde erfolgreich geändert!<br>";
 
         /* $statement->execute(array("passwort1" => $passwort1, "id" => $id));
          unset ($statement);

@@ -5,22 +5,24 @@
  * Date: 17.01.2017
  * Time: 21:31
  */
+session_start();
 include "conn.php";
 $user = $_SESSION['loginname'];
-if ($user) {
 
+if ($user) {
     if ($_POST['submit']) {
-        $oldpasswort = md5($_POST['oldpasswort']);
+        $oldpasswort = md5($_POST['altespasswort']);
         $newpasswort = md5($_POST['neuespasswort']);
         $repeatpasswort = md5($_POST['repeatneuespasswort']);
 
-        $oldpasswortdb = "SELECT passwort FROM nutzer WHERE username='$user' AND passwort='$oldpasswort'";
+        $oldpasswortdb = "SELECT passwort FROM nutzer WHERE username='$user'";
 
         if ($oldpasswort == $oldpasswortdb) {
-            if ($newpasswort == $repeatpasswort) {
+            if ($newpasswort == $repeatpasswort)
+            {
                 $update = "UPDATE nutzer SET password='$newpasswort' WHERE username='$user'";
                 session_destroy();
-                die ("Vorgang erfolgreich! <a href='login.html'>Zurück</a>");
+                die ("Vorgang erfolgreich! <a href='../login.html'>Zurück</a>");
             } else {
                 die ("Die neuen Passwörter stimmen nicht überein!");
             }
