@@ -1,3 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<form class="login" method="POST" action="login.php?submit=1">
+    <b>Login</b><br>
+    <br>
+    <input name="loginname" placeholder="Name"><br>
+    <input name="loginpasswort" placeholder="Passwort" type=password><br>
+    <br>
+    <input type=submit name=submit value="Einloggen">
+</form>
+<p style = "text-align:center;"><a href="regmatch.php">Noch kein Nutzer? Jetzt registrieren!</a></p>
+</body>
+</html>
 
 
 <?php
@@ -31,7 +50,9 @@ if(isset($_GET["submit"])) {
                 $_SESSION["text"] = $zeile->text;
                 echo $_SESSION["loginname"];
 
-                header('Location: profilvorlage.php');
+                header('Location: erfolg.php');
+
+                //header('Location: profilvorlage.php');
 
             }
 

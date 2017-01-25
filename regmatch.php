@@ -1,25 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Registrieren</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-
-<form class="register" method="POST" action="regmatch.php?submit=1">
-    <b>Registrieren:</b><br>
-    <br>
-    <input name="username" placeholder="Username" type=text><br>
-    <input name="passwort1" placeholder="Passwort" type=password><br>
-    <input name="passwort2" placeholder="Passwort wiederholen" type=password><br>
-    <br>
-    <input type=submit name=submit value="Registrieren">
-</form>
-</body>
-</html>
-
 <?php
 session_start();
 include "conn.php";
