@@ -55,7 +55,7 @@ $ergebnis = $db->query($two_tables);
 while($row = $ergebnis->fetch(PDO::FETCH_ASSOC)){
   //  echo $row['$login'].'/'.$row['name'].'<br/>';
 
-     echo ' - Datei ansehen: <a href="'.$row['name'].'">'.$row['name'].'</a>';
+     echo ' - Datei einsehen: <a href="'.$row['name'].'">'.$row['name'].'</a>';
 
       // delete einbauen: "DELETE FROM nutzerfiles WHERE name ='den ausgegebenen Zeilen irgendwie eine Variable zuorden'
 }
