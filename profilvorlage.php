@@ -1,5 +1,5 @@
 <?php
-
+include "conn.php";
 session_start();
 
 $login = $_SESSION['loginname'];
@@ -32,5 +32,24 @@ $dateiform = pathinfo($ordner_datei, PATHINFO_EXTENSION);
         <td width="165" valign="top"><?php echo "$_SESSION[profilbild]" ?></td>
     </tr>
 </table>
-<p align="center"><a href="login.php"></a></p>
 
+<?php
+$strSQL = "SELECT * FROM nutzerfiles WHERE username = '$login'";
+
+// Query ausführen (die Datensatzgruppe $rs enthält das Ergebnis)
+$rs = mysql_query($strSQL);
+
+// Schleifendurchlauf durch $rs
+// Jede Zeile wird zu einem Array ($row), mit mysql_fetch_array
+while($row = mysql_fetch_array($rs)) {
+
+    // Schreibe den Wert der Spalte Vorname (der jetzt im Array $row ist)
+    echo $row['name'] . "<br />";
+
+}
+
+// Schließt die Datenbankverbindung
+mysql_close();
+?>
+
+<p align="center"><a href="login.php"></a></p>
