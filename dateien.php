@@ -17,7 +17,8 @@ session_start();
  * Date: 04.12.2016
  * Time: 02:01
  */
-include "conn.php";
+include "conn.php"
+include "profilfeld.php";
 
 $login = $_SESSION['loginname'];
 $datei = $_SESSION['profilbild'];
@@ -26,11 +27,10 @@ $datei = $_FILES['bilddatei']['name'];
 $tmp_datei = $_FILES['bilddatei']['tmp_name'];
 $typ = $_FILES['bilddatei']['type'];
 $size = $_FILES['bilddatei']['size'];
-$max = 2097152;
+$max = 1000000;
 $fehler = $_FILES['bilddatei']['error'];
 $ordner = "file/";
 $ordner_datei = ($ordner.basename($datei));
-$dateiname = pathinfo($ordner_datei, PATHINFO_FILENAME);
 $dateiform = pathinfo($ordner_datei, PATHINFO_EXTENSION);
 
 
@@ -47,22 +47,22 @@ INNER JOIN files
 ON nutzer.username = files.username
 ORDER BY nutzer.username"; */
 
-$two_tables = "SELECT name FROM nutzerfiles
+$two_tables = "SELECT name, fileid FROM files
 WHERE username='$login' ORDER BY name";
 
 $ergebnis = $db->query($two_tables);
-
+$zahl = $ergebnis->rowCount();
 while($row = $ergebnis->fetch(PDO::FETCH_ASSOC)){
   //  echo $row['$login'].'/'.$row['name'].'<br/>';
 
-     echo ' - Datei einsehen: <a href="'.$row['name'].'">'.$row['name'].'</a>';
-
-      // delete einbauen: "DELETE FROM nutzerfiles WHERE name ='den ausgegebenen Zeilen irgendwie eine Variable zuorden'
+echo ' - Datei ansehen: <a href="'.$row['name'].'">'.$row['name'].'</a> Ändern:
+     <a href="filedelete.php?fileid='.$row['fileid'].'"> Loeschen</a>
+     <a href="teilen.php?fileid='.$row['fileid'].'"> Teilen</a>' ;
 }
 
 $login = $_SESSION['loginname'];
 
-
+echo "<br/>Anzahl der Dateien: $zahl";
 
 echo "'<br/>'Username: $login     <br/>" ;
 
