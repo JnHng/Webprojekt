@@ -56,8 +56,9 @@ while($row = $ergebnis->fetch(PDO::FETCH_ASSOC)){
   //  echo $row['$login'].'/'.$row['name'].'<br/>';
 
 echo ' - Datei ansehen: <a href="'.$row['name'].'">'.$row['name'].'</a> Ändern:
+     <a href="fileshare.php?name='.$row['name'].'"> Teilen</a>
      <a href="filedelete.php?fileid='.$row['fileid'].'"> Loeschen</a>
-     <a href="teilen.php?fileid='.$row['fileid'].'"> Teilen</a>' ;
+     <a href="filechange.php?fileid='.$row['fileid'].'"> Umbenennen</a>';
 }
 
 $login = $_SESSION['loginname'];
