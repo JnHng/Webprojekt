@@ -45,10 +45,10 @@ if (isset ($_POST["submit"])) {
     $nutzer = $_POST["nutzer"];
     $filename = $_GET["name"];
 
+    $indivdiual = $nutzer.'_';
 
 
-
-    echo $login, $filename;
+    echo $login.':', $filename;
 
 
     if (!empty($nutzer)) {
@@ -67,8 +67,18 @@ if (isset ($_POST["submit"])) {
 
 else {
 
-    $fileshare = $db->prepare("INSERT INTO files (name, username) VALUES (:filename, :nutzer)");
-    $fileshare->bindParam(':filename', $filename, PDO::PARAM_STR);
+    if (copy("file/$filename", "file/$indivdiual.$filename")){
+
+        //rename("file/$dateiname", "file/$newname.doc");
+
+        $neuername = "$indivdiual.$filename";
+  /*  $test = $db->prepare("SELECT name, typ, size FROM files WHERE name = :filename");
+    $test->bindParam(':filename', $filename, PDO::PARAM_STR);
+    $test->execute();
+    $chosenone = $test->fetch(PDO::FETCH_ASSOC); */
+
+    $fileshare = $db->prepare("INSERT INTO files (name, username) VALUES (:neuername, :nutzer)");
+    $fileshare->bindParam(':neuername', $neuername, PDO::PARAM_STR);
     $fileshare->bindParam(':nutzer', $nutzer, PDO::PARAM_STR);
     $fileshare->execute();
 
@@ -84,8 +94,13 @@ else {
     /* $statement->execute(array("passwort1" => $passwort1, "id" => $id));
      unset ($statement);
      echo "Ihr Passwort wurde erfolgreich ge?ndert!<br>"; */
+    } else {
+        echo "Bitte geben Sie einen Nutzernamen ein!<br>";
+    }
+}
 
-} } else {
+
+    } else {
         echo "Bitte geben Sie einen Nutzernamen ein!<br>";
     }
 
