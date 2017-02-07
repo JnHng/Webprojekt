@@ -48,18 +48,18 @@ if (isset ($_POST["submit"])) {
 
     $dateiname = $_GET["name"];
 
-
+    $indivdiual = $login.'_';
 
 
     echo $login; 
 
 
     if (!empty($newname)) {
-      if (copy("file/$dateiname", "file/$newname.doc")){
+      if (copy("file/$dateiname", "file/$indivdiual.$newname.doc")){
 
         //rename("file/$dateiname", "file/$newname.doc");
 
-        $neuername = "$newname.doc";
+        $neuername = "$indivdiual.$newname.doc";
 
         echo "Okidoki:!<br>";
 
