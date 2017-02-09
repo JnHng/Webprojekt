@@ -51,34 +51,51 @@ if (isset ($_POST["submit"])) {
     $indivdiual = $login.'_';
 
 
-    echo $login; 
+    echo $login;
 
 
     if (!empty($newname)) {
-      if (copy("file/$dateiname", "file/$indivdiual.$newname.doc")){
+
+        /* $eingabe = $newname;
+        $suchen = '/./';
+        preg_match($eingabe, $suchen, $punkt); */
+
+        /* if ($newname = "."){
+
+             echo "Nope: .";
+             exit();
+         } */
+
+        $array = explode(".",$dateiname);
+
+        echo $array[0]."<br>".$array[1]."<br>";
+
+        // $typ = $array[1];
+
+        rename("file/$dateiname", "file/$indivdiual$newname.$array[1]");
 
         //rename("file/$dateiname", "file/$newname.doc");
 
-        $neuername = "$indivdiual.$newname.doc";
+        $neuername = "$indivdiual$newname.$array[1]";
 
-        echo "Okidoki:!<br>";
+        echo "Okidoki: $neuername!<br>";
 
-            $fileupdate = $db->prepare("UPDATE files SET name = :neuername WHERE username = :login AND name = :dateiname");
+        $fileupdate = $db->prepare("UPDATE files SET name = :neuername WHERE username = :login AND name = :dateiname");
 
-            $fileupdate->bindParam(':neuername', $neuername, PDO::PARAM_STR);
-            $fileupdate->bindParam(':dateiname', $dateiname, PDO::PARAM_STR);
-            $fileupdate->bindParam(':login', $_SESSION['loginname'], PDO::PARAM_STR);
+        $fileupdate->bindParam(':neuername', $neuername, PDO::PARAM_STR);
+        $fileupdate->bindParam(':dateiname', $dateiname, PDO::PARAM_STR);
+        $fileupdate->bindParam(':login', $_SESSION['loginname'], PDO::PARAM_STR);
 
-            $fileupdate->execute();
-            unset ($fileupdate);
+        $fileupdate->execute();
+        unset ($fileupdate);
 
-            echo ' Ihr Dateiname wurde erfolgreich geändert. Zurück zu <a href="dateien.php">dateien.php</a>';
+        echo ' Ihr Dateiname wurde erfolgreich geändert. Zurück zu <a href="dateien.php">dateien.php</a>';
+
+        /* $statement->execute(array("passwort1" => $passwort1, "id" => $id));
+         unset ($statement);
+         echo "Ihr Passwort wurde erfolgreich ge?ndert!<br>"; */
 
 
-
-      } else {
-          echo "Fehler!<br>";
-      }
 
 
     } else {
