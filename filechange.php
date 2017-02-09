@@ -55,26 +55,18 @@ if (isset ($_POST["submit"])) {
 
 
     if (!empty($newname)) {
+        $suchen = ".";
+        $punkt = strpos($newname, $suchen);
+        if($punkt === false) {
 
-        /* $eingabe = $newname;
-        $suchen = '/./';
-        preg_match($eingabe, $suchen, $punkt); */
-
-        /* if ($newname = "."){
-
-             echo "Nope: .";
-             exit();
-         } */
 
         $array = explode(".",$dateiname);
 
         echo $array[0]."<br>".$array[1]."<br>";
 
-        // $typ = $array[1];
 
         rename("file/$dateiname", "file/$indivdiual$newname.$array[1]");
 
-        //rename("file/$dateiname", "file/$newname.doc");
 
         $neuername = "$indivdiual$newname.$array[1]";
 
@@ -95,7 +87,9 @@ if (isset ($_POST["submit"])) {
          unset ($statement);
          echo "Ihr Passwort wurde erfolgreich ge?ndert!<br>"; */
 
-
+        } else {
+            echo "Bitte folgendes Zeichen nicht nutzen: '.'<br>";
+        }
 
 
     } else {
