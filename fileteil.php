@@ -7,7 +7,7 @@ $fileId = $_GET['fileid'];
 ?>
 <body>
 <?php
-$result = $db->prepare("SELECT * from `files` WHERE fileid = $fileId");
+$result = $db->prepare("SELECT * from files WHERE fileid = $fileId");
 $result->bindValue(':fileId', $fileId, PDO::PARAM_INT);
 $result->fetchObject();
 
