@@ -18,6 +18,7 @@ session_start();
     <meta charset="UTF-8">
     <title>Nutzer löschen</title>
     <link rel="stylesheet" href="style.css">
+<?php  include "ses2.php"; ?>
 </head>
 <body>
 
@@ -48,9 +49,14 @@ if (isset ($_POST["Ja"])) {
     $login = $_SESSION['loginname'];
 
     try {
-        $loesch = $db->prepare("DELETE FROM nutzer WHERE username = :login");
+$loesch = $db->prepare("DELETE FROM nutzer WHERE username = :login");
+        $loesch->bindParam(':login', $_SESSION['loginname'], PDO::PARAM_STR);
 
 
+        $loesch->execute();
+        unset ($loesch);
+
+        $loesch = $db->prepare("DELETE FROM files WHERE username = :login");
         $loesch->bindParam(':login', $_SESSION['loginname'], PDO::PARAM_STR);
 
 
@@ -65,9 +71,10 @@ if (isset ($_POST["Ja"])) {
     } catch (PDOException $e) {
         echo $e->getMessage();
     }
+    session_destroy();
 }
 
 
-session_destroy();
+
 
 ?>
