@@ -19,4 +19,4 @@ $ordner_datei = ($ordner.basename($datei));
     <td width="165" valign="top"><?php echo "$login"  ?></td>
     </tr>
 </table>
-<p align="center"><a href="login.php"></a></p>
+<p align="center"><a href="../login.php"></a></p>

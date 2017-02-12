@@ -15,17 +15,18 @@ $ordner = "file/";
 $ordner_datei = ($ordner.basename($datei));
 $dateiname = pathinfo($ordner_datei, PATHINFO_FILENAME);
 $dateiform = pathinfo($ordner_datei, PATHINFO_EXTENSION);
-
 ?>
+
+
 <table width="398" border="0" align="center" cellpadding="0">
     <tr>
-        <td height="26" colspan="2">Dein Profil </td>
-        <td><div align="right"><a href="abmelden.php">Logout</a></div></td>
-        <td><div align="right"><a href="bearbeiten2.php">Bearbeiten</a></div></td>
-        <td><div align="right"><a href="pwchange2.php">Passwort ändern</a></div></td>
+        <td height="26" colspan="2"><?php echo $_SESSION['loginname'] ?></td>
+        <td><div align="right"><a href="../abmelden.php">Logout</a></div></td>
+        <td><div align="right"><a href="../bearbeiten2.php">Bearbeiten</a></div></td>
+        <td><div align="right"><a href="../pwchange2.php">Passwort ändern</a></div></td>
     </tr>
 
-        <td width="129" rowspan="5"><img src="<?php echo $ordner . $_SESSION[profilbild] ?>" width="129" height="129"/></td>
+        <td width="129" rowspan="5"><img src="<?php echo $ordner . $_SESSION['profilbild'] ?>" width="129" height="129"/></td>
         <td width="82" valign="top"><div align="left">Username:</div></td>
         <td width="165" valign="top"><?php echo "$login" ?></td>
         <td width="82" valign="top"><div align="left">Bildname:</div></td>
@@ -52,4 +53,4 @@ while($row = mysql_fetch_array($rs)) {
 mysql_close();
 ?>
 
-<p align="center"><a href="login.php"></a></p>
+<p align="center"><a href="../login.php"></a></p>

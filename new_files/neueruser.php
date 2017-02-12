@@ -1,3 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registrieren</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+<form class="register" method="POST" action="">
+    <b>Registrieren:</b><br>
+    <br>
+    <input name="username" placeholder="Username" type=text><br>
+    <input name="passwort1" placeholder="Passwort" type=password><br>
+    <input name="passwort2" placeholder="Passwort wiederholen" type=password><br>
+    <input name="email" placeholder="E-Mail" type=email><br>
+    <br>
+    <input type=submit name=submit value="Registrieren">
+</form>
+</body>
+</html>
+
 <?php
 session_start();
 include "conn.php";
@@ -61,7 +84,7 @@ VALUES(:username,:hash, :email)");
 
 
         if ($register !== false) {
-            echo 'Herzlichen Glückwunsch! Sie haben sich soeben registriert! <a href="login.php">Zur Anmeldung</a>';
+            echo 'Herzlichen Gl�ckwunsch! Sie haben sich soeben registriert! <a href="../login.php">Zur Anmeldung</a>';
         } else {
             echo "Ein Fehler ist aufgetreten!<br>";
         }

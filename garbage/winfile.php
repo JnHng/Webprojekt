@@ -18,7 +18,7 @@ if(isset($_POST['submit'])) {
     $size = $_FILES['bilddatei']['size'];
     $max = 2097152;
     $fehler = $_FILES['bilddatei']['error'];
-    $ordner = "/home/iz002/public_html/file/";
+    $ordner = "uploads/";
     $ordner_datei = ($ordner . basename($datei));
     $ordnerd = ($ordner . $datei);
     $dateiname = pathinfo($ordner_datei, PATHINFO_FILENAME);

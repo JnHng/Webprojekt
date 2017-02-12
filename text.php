@@ -2,7 +2,7 @@
 
 <?php
 session_start();
-
+include "ses2.php";
 include "conn.php";
 $login = $_SESSION['loginname'];
 $text = $_POST['text'];
@@ -37,16 +37,9 @@ $notiz = $_SESSION['text'];
             $schreiben->bindParam(':login', $_SESSION['loginname'], PDO::PARAM_STR);
             $schreiben->execute();
 
-       /*     if($schreiben == true) {
-                $text = $notiz;
-} */
-
 
             echo "$login s'Notiz erstellt! $text <br>";
 
-            /* $statement->execute(array("passwort1" => $passwort1, "id" => $id));
-             unset ($statement);
-             echo "Ihr Passwort wurde erfolgreich geändert!<br>"; */
 
     } else {
         echo "Schreiben Sie zuerst eine Notiz!<br>";
@@ -56,7 +49,7 @@ $notiz = $_SESSION['text'];
 
 
     $sql = "SELECT * FROM nutzer WHERE username='$login' AND text='$text'";
-//    echo $sql;
+
     $query = $db->query($sql);
     if ($query == false) {
         die(var_export($db->errorinfo(), TRUE));
@@ -64,7 +57,7 @@ $notiz = $_SESSION['text'];
 
 
     if ($zeile = $query->fetch(PDO::FETCH_OBJ)) {
-        /*  echo "query";*/
+
         if ($zeile->text == $text && $zeile->username == $login) {
             $_SESSION["loginname"] = $zeile->username;
             $_SESSION["text"] = $zeile->text;

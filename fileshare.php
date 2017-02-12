@@ -9,6 +9,7 @@
 
 
 session_start();
+include "ses2.php";
 ?>
 
     <!DOCTYPE html>
@@ -23,9 +24,9 @@ session_start();
 
 
     <form class="filechange" method="POST" action="">
-        <b>Wählen Sie den Nutzer, dem Sie die Datei zusenden wollen:</b><br>
+        <b>W�hlen Sie den Nutzer, dem Sie die Datei zusenden wollen:</b><br>
         <br>
-        <input name="nutzer" placeholder="Nutzer wählen:" type=text><br>
+        <input name="nutzer" placeholder="Nutzer w�hlen:" type=text><br>
         <br>
         <input type=submit name=submit value="Teilen">
     </form>
@@ -38,8 +39,6 @@ include "conn.php";
 
 if (isset ($_POST["submit"])) {
 
-    /* $id = ["id"];
-    $id = $_SESSION['id']; */
 
     $login = $_SESSION['loginname'];
     $nutzer = $_POST["nutzer"];
@@ -67,15 +66,11 @@ if (isset ($_POST["submit"])) {
 
 else {
 
-    if (copy("file/$filename", "file/$indivdiual.$filename")){
+    if (copy("file/$filename", "file/$indivdiual$filename")){
 
-        //rename("file/$dateiname", "file/$newname.doc");
 
-        $neuername = "$indivdiual.$filename";
-  /*  $test = $db->prepare("SELECT name, typ, size FROM files WHERE name = :filename");
-    $test->bindParam(':filename', $filename, PDO::PARAM_STR);
-    $test->execute();
-    $chosenone = $test->fetch(PDO::FETCH_ASSOC); */
+        $neuername = "$indivdiual$filename";
+
 
     $fileshare = $db->prepare("INSERT INTO files (name, username) VALUES (:neuername, :nutzer)");
     $fileshare->bindParam(':neuername', $neuername, PDO::PARAM_STR);
@@ -83,17 +78,8 @@ else {
     $fileshare->execute();
 
 
-    /*$fileshare = $db->prepare("UPDATE files SET name = :nutzer WHERE fileid = :fileid");
-    $fileshare->bindParam(':nutzer', $nutzer, PDO::PARAM_STR);
-    $fileshare->bindValue(':fileid', $_GET['fileid'], PDO::PARAM_INT);
-    $fileshare->execute();
-    unset ($fileshare);*/
+    echo ' Sie haben Ihre Datei erfolgreich geteilt. Zur�ck zu <a href="new_files/dateien.php">dateien.php</a>';
 
-    echo ' Sie haben Ihre Datei erfolgreich geteilt. Zurück zu <a href="dateien.php">dateien.php</a>';
-
-    /* $statement->execute(array("passwort1" => $passwort1, "id" => $id));
-     unset ($statement);
-     echo "Ihr Passwort wurde erfolgreich ge?ndert!<br>"; */
     } else {
         echo "Bitte geben Sie einen Nutzernamen ein!<br>";
     }

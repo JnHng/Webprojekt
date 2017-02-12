@@ -1,24 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-<form class="login" method="POST" action="login.php?submit=1">
-    <b>Login</b><br>
-    <br>
-    <input name="loginname" placeholder="Name"><br>
-    <input name="loginpasswort" placeholder="Passwort" type=password><br>
-    <br>
-    <input type=submit name=submit value="Einloggen">
-</form>
-<p style = "text-align:center;"><a href="regmatch.php">Noch kein Nutzer? Jetzt registrieren!</a></p>
-</body>
-</html>
-
-
 <?php
 
 if(isset($_GET["submit"])) {
@@ -35,7 +14,7 @@ if(isset($_GET["submit"])) {
     if (!empty($login) && !empty($passwort)) {
 
         $sql = "SELECT * FROM nutzer WHERE username='$login' AND passwort='$hash'";
-        echo $sql;
+
         $query = $db->query($sql);
         if ($query == false) {
             die(var_export($db->errorinfo(), TRUE));
@@ -43,24 +22,22 @@ if(isset($_GET["submit"])) {
 
 
         if ($zeile = $query->fetch(PDO::FETCH_OBJ)) {
-          /*  echo "query";*/
+
             if ($zeile->passwort == $hash && $zeile->username == $login) {
                 $_SESSION["loginname"] = $zeile->username;
                 $_SESSION["profilbild"] = $zeile->profilbild;
                 $_SESSION["text"] = $zeile->text;
+                $_SESSION["email"] = $zeile->email;
                 echo $_SESSION["loginname"];
 
-                header('Location: erfolg.php');
-
-                //header('Location: profilvorlage.php');
+                header('Location: dashboard.php');
 
             }
 
         } else {
-            echo "Nutzer nicht gefunden! ";
+            echo "Nutzer nicht gefunden! Geben sie einen anderen Nutzernamen ein!";
         }
 
-        echo "Gib einen anderen Nutzer ein!";
 
     } else {
         echo "Bitte alle Felder ausf�llen!";

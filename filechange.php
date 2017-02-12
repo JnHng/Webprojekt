@@ -5,9 +5,8 @@
  * Date: 02.02.2017
  * Time: 04:28
  */
-
-
 session_start();
+
 ?>
 
     <!DOCTYPE html>
@@ -15,14 +14,14 @@ session_start();
     <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Dateinamen ändern</title>
+        <title>Dateinamen �ndern</title>
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
 
 
     <form class="filechange" method="POST" action="">
-        <b>Dateinamen ändern:</b><br>
+        <b>Dateinamen �ndern:</b><br>
         <br>
         <input name="datei" placeholder="Neuer Dateiname:" type=text><br>
         <br>
@@ -40,18 +39,15 @@ if (isset ($_POST["submit"])) {
     $login = $_SESSION['loginname'];
     $newname = $_POST["datei"];
 
-    $datei = $_FILES['bilddatei']['name'];
-    $tmp_datei = $_FILES['bilddatei']['tmp_name'];
-    $ordner = "file/";
-    $ordner_datei = ($ordner . basename($datei));
+
 
 
     $dateiname = $_GET["name"];
+    $fileid = $_GET["fileid"];
 
     $indivdiual = $login.'_';
 
 
-    echo $login;
 
 
     if (!empty($newname)) {
@@ -60,20 +56,29 @@ if (isset ($_POST["submit"])) {
         if($punkt === false) {
 
 
+            $einzigartig = $db->prepare("SELECT fileid, name, username FROM files WHERE fileid = :fileid");
+            $einzigartig->execute(array('fileid' => $fileid));
+            $ausgabe = $einzigartig->fetch();
+
+    $dateiname=$ausgabe['name'];
+
+
         $array = explode(".",$dateiname);
 
-        echo $array[0]."<br>".$array[1]."<br>";
+//        echo $array[0]."<br>".$array[1]."<br>";
 
 
-        rename("file/$dateiname", "file/$indivdiual$newname.$array[1]");
+        copy("$dateiname", "$indivdiual$newname.$array[1]");
+
 
 
         $neuername = "$indivdiual$newname.$array[1]";
 
         echo "Okidoki: $neuername!<br>";
 
-        $fileupdate = $db->prepare("UPDATE files SET name = :neuername WHERE username = :login AND name = :dateiname");
+        $fileupdate = $db->prepare("UPDATE files SET name = :neuername WHERE fileid = :fileid && username = :login AND name = :dateiname");
 
+        $fileupdate->bindValue(':fileid', $fileid, PDO::PARAM_INT);
         $fileupdate->bindParam(':neuername', $neuername, PDO::PARAM_STR);
         $fileupdate->bindParam(':dateiname', $dateiname, PDO::PARAM_STR);
         $fileupdate->bindParam(':login', $_SESSION['loginname'], PDO::PARAM_STR);
@@ -81,11 +86,8 @@ if (isset ($_POST["submit"])) {
         $fileupdate->execute();
         unset ($fileupdate);
 
-        echo ' Ihr Dateiname wurde erfolgreich geändert. Zurück zu <a href="dateien.php">dateien.php</a>';
+        echo ' Ihr Dateiname wurde erfolgreich ge�ndert. Zur�ck zu <a href="new_files/dateien.php">dateien.php</a>';
 
-        /* $statement->execute(array("passwort1" => $passwort1, "id" => $id));
-         unset ($statement);
-         echo "Ihr Passwort wurde erfolgreich ge?ndert!<br>"; */
 
         } else {
             echo "Bitte folgendes Zeichen nicht nutzen: '.'<br>";

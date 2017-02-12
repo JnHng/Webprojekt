@@ -2,19 +2,17 @@
 $title = "File Teilen";
 include "conn.php";
 
-$fileId = $_GET['fileid'];
+$fileid = $_GET['fileid'];
 
 ?>
 <body>
 <?php
-$result = $db->prepare("SELECT * from files WHERE fileid = $fileId");
-$result->bindValue(':fileId', $fileId, PDO::PARAM_INT);
-$result->fetchObject();
+$result = $db->query("SELECT * from files WHERE fileid = $fileid")->fetchObject();
 
 
 if($result == false) {
     echo "Die FileId ist nicht korrekt!";
-exit();
+    exit();
 }
 
 echo md5($result->name);
