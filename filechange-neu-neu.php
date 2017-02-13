@@ -1,25 +1,44 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: Illia
+ * Date: 02.02.2017
+ * Time: 04:28
+ */
 
-include "header.php";
-include "navigation.php";
+
+session_start();
 ?>
 
+    <!DOCTYPE html>
+
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Dateinamen �ndern</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
     <body>
 
-    <div class="container">
-        <div class="row">
-            <div class="text-center" class="col-md-12">
+
     <form class="filechange" method="POST" action="">
-        <h3 style="padding-bottom: 10px;">Dateinamen ändern</h3>
-        <div class="form-group"><input class="form-control"  name="datei" placeholder="Neuer Dateiname" type=text></div>
-        <input class="btn btn-link" type=submit name=submit value="Dateinamen ändern">
+        <b>Dateinamen �ndern:</b><br>
+        <br>
+        <input name="datei" placeholder="Neuer Dateiname:" type=text><br>
+        <br>
+        <input type=submit name=submit value="Dateinamen �ndern">
     </form>
-                <?php
+    </body>
+    </html>
 
-                if (isset ($_POST["submit"])) {
+<?php
 
-                    $login = $_SESSION['loginname'];
-                    $newname = $_POST["datei"];
+include "conn.php";
+
+if (isset ($_POST["submit"])) {
+
+    $login = $_SESSION['loginname'];
+    $newname = $_POST["datei"];
 
     $datei = $_FILES['bilddatei']['name'];
     $tmp_datei = $_FILES['bilddatei']['tmp_name'];
@@ -32,12 +51,15 @@ include "navigation.php";
     $indivdiual = $login.'_';
 
 
+    echo $login;
 
 
-                    if (!empty($newname)) {
-                        $suchen = ".";
-                        $punkt = strpos($newname, $suchen);
-                        if($punkt === false) {
+    if (!empty($newname)) {
+        $suchen = ".";
+        $punkt = strpos($newname, $suchen);
+        if($punkt === false) {
+
+
 
         echo $array[0]."<br>".$array[1]."<br>";
             $array = explode(".",$dateiname);
@@ -45,8 +67,10 @@ include "navigation.php";
 
 
 
+        $neuername = "uploads/$indivdiual$newname.$array[1]";
 
-//        echo $array[0]."<br>".$array[1]."<br>";
+        echo "Okidoki: $neuername!<br>";
+
         $fileupdate = $db->prepare("UPDATE files SET name = :neuername WHERE username = :login AND name = :dateiname");
 
         $fileupdate->bindParam(':neuername', $neuername, PDO::PARAM_STR);
@@ -74,9 +98,4 @@ include "navigation.php";
 
 }
 
-                ?>
-            </div>
-        </div>
-    </div>
-    </body>
-</html>
+?>

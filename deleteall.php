@@ -16,7 +16,7 @@ session_start();
     <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Alle Files löschen</title>
+        <title>Alle Files lï¿½schen</title>
         <link rel="stylesheet" href="style.css">
         <?php  //include "ses2.php"; ?>
     </head>
@@ -24,9 +24,9 @@ session_start();
 
 
     <form class="delete" method="POST" action="">
-        <b>Wollen Sie all ihre Dateien unwiderruflich löschen?</b><br>
+        <b>Wollen Sie all ihre Dateien unwiderruflich lï¿½schen?</b><br>
         <br>
-        <input type=submit name="Ja" value="ALLES LÖSCHEN!">
+        <input type=submit name="Ja" value="ALLES Lï¿½SCHEN!">
         <br><br>
     </form>
     </body>
@@ -49,14 +49,13 @@ if (isset ($_POST["Ja"])) {
 
         $loesch->execute();
 
-        echo "All ihre Dateien wurden gelöscht! <br>";
+        echo "All ihre Dateien wurden gelÃ¶scht! <br>";
 
     } catch (PDOException $e) {
         echo $e->getMessage();
     }
-
-
 }
+
 
 
 

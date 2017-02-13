@@ -1,6 +1,6 @@
 <?php
-session_start();
-include "conn.php";
+
+include "header.php";
 
 if(isset($_POST["submit"])) {
     $username = $_POST["username"];
@@ -61,16 +61,16 @@ VALUES(:username,:hash, :email)");
 
 
         if ($register !== false) {
-            echo 'Herzlichen Glückwunsch! Sie haben sich soeben registriert! <a href="login.php">Zur Anmeldung</a>';
+            echo 'Herzlichen Glückwunsch! Sie haben sich soeben registriert! Melden Sie sich an.';
         } else {
-            echo "Ein Fehler ist aufgetreten!<br>";
+            echo "Ein Fehler ist aufgetreten!";
         }
 
 
 
     }
     else {
-        echo "Bitte alle Felder wie angegeben ausf?llen!";
+        echo "Bitte alle Felder wie angegeben ausfüllen!";
     }
 }
 

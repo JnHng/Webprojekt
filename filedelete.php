@@ -1,8 +1,9 @@
 <?php
+$site_title = "Datei löschen";
 include "header.php";
 include "navigation.php";
-session_start();
 ?>
+
     <body>
 
     <div class="container">
@@ -36,8 +37,17 @@ if (isset ($_POST["Ja"])) {
 
 
     $login = $_SESSION['loginname'];
+    $fileid = $_GET['fileid'];
 
 
+        $deletefile = $db->prepare("SELECT fileid, name FROM files WHERE fileid = :fileid");
+        $deletefile->execute(array('fileid' => $fileid));
+        $delete = $deletefile->fetch();
+
+        $dateiname=$delete['name'];
+
+
+        unlink("$dateiname");
 
     try {
         $loesch = $db->prepare("DELETE FROM files WHERE username = :login AND fileid = :fileid");
@@ -48,7 +58,6 @@ if (isset ($_POST["Ja"])) {
 
         $loesch->execute();
         unset ($loesch);
-
         echo ' Ihre Datei wurde gelöscht. Zurück zu <a href="meine-dateien.php">dateien.php</a>';
 
         /* $statement->execute(array("passwort1" => $passwort1, "id" => $id));

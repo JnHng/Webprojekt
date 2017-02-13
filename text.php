@@ -1,10 +1,7 @@
 
-
 <?php
-session_start();
-include "ses2.php";
-include "conn.php";
-$login = $_SESSION['loginname'];
+include "header.php";
+
 $text = $_POST['text'];
 $notiz = $_SESSION['text'];
 
@@ -15,19 +12,9 @@ if (isset ($_POST["submit"])) {
 $login = $_SESSION['loginname'];
 $text = $_POST['text'];
 $notiz = $_SESSION['text'];
-/**
- * Created by PhpStorm.
- * User: Illia
- * Date: 30.12.2016
- * Time: 01:46
- */
 
 
     if (!empty($text)) {
-
-
-
-
 
 
         $schreiben = $db->prepare("UPDATE nutzer SET text = :text WHERE username = :login");
@@ -38,11 +25,14 @@ $notiz = $_SESSION['text'];
             $schreiben->execute();
 
 
-            echo "$login s'Notiz erstellt! $text <br>";
+            echo
+
+            "$login s'Notiz erstellt! $text";
 
 
     } else {
-        echo "Schreiben Sie zuerst eine Notiz!<br>";
+        #echo "Schreiben Sie zuerst eine Notiz!";
+        header("Location: meine-dateien.php");
     }
 
 
@@ -66,7 +56,7 @@ $notiz = $_SESSION['text'];
 
         }
         if($sql == true) {
-            echo "Gespeichert";
+            header("Location: meine-dateien.php");
         }
 
     }
@@ -78,24 +68,4 @@ $notiz = $_SESSION['text'];
 }
 
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-<form class="text" method="POST" action="text.php?submit=1">
-    <br>
-    <h1>Notizen:</h1>
-    <textarea name="text" cols="50" rows="10"><?php
-         echo "$_SESSION[text]";
-        ?></textarea>
-    <br>
-    <input type=submit name=submit value="Speichern">
-</form>
-</body>
-</html>
 

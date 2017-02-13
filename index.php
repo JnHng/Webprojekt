@@ -1,9 +1,9 @@
 <?php
 $site_title = "Startseite";
 include "header.php";
+$ordner = "Profilbilder/";
 
-
-$weiterleitungWennAngemeldet = "/~nl035/profilvorlage_nick.php";
+$weiterleitungWennAngemeldet = "/~nl035/meine-dateien.php";
 
 if($_SESSION['loginname'] == true) {
     header("Location: $weiterleitungWennAngemeldet");
@@ -32,6 +32,8 @@ if($_SESSION['loginname'] == true) {
 
                 <button type="submit" name=submit value="Einloggen" class="btn btn-link">Anmelden</button>
             </form>
+
+
         </div>
 
 

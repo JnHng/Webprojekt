@@ -1,5 +1,6 @@
 <?php
-session_start(); ?>
+session_start();
+include "conn.php"?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,14 +14,11 @@ $user_input = $_GET['user_input'];
 $user_input = strip_tags($user_input);
 
 #Profil
-
 $login = $_SESSION['loginname'];
 $datei = $_SESSION['profilbild'];
 
 $datei = $_FILES['bilddatei']['name'];
-$ordner = "Profilbilder/";
-
-
+$ordner = "uploads/";
 
 ?>
 <head>

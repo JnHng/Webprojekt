@@ -3,22 +3,48 @@
 $site_title = "Meine Dateien";
 include "header.php";
 include "navigation.php";
+$ordner = "Profilbilder/";
+?>
+
+<body>
 
 
-$weiterleitungWennNichtAngemeldet="/~nl035/index.php";
-
-if($_SESSION['loginname'] == false) {
-    header("Location: $weiterleitungWennNichtAngemeldet");
-}?>
 
 
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-8">
             <h3 style="padding-bottom: 10px" class="text-center" >Meine Dateien</h3>
             <table class="table table-hover"><tbody>
-            <?php include "dateien.php" ?> </tbody></table>
+                <?php
+                $login = $_SESSION['loginname'];
+                $ordner = "uploads/";
+
+                $two_tables = "SELECT name, fileid FROM files WHERE username='$login' ORDER BY name";
+
+                $ergebnis = $db->query($two_tables);
+                $zahl = $ergebnis->rowCount();
+                while($row = $ergebnis->fetch(PDO::FETCH_ASSOC)){
+                    //  echo $row['$login'].'/'.$row['name'].'<br/>';
+
+                    echo ' <tr><td> <a href="'.$row['name'].'">'.$row['name'].'</a></td>
+     <td style="text-align: right;"><a href="mail.php?name='.$row['name']."&fileid=".$row['fileid'].'"> Teilen</a> |
+     <a href="filedelete.php?fileid='.$row['fileid']."&name=".$row['name'].'">Löschen</a> |
+     <a href="filechange-neu.php?fileid='.$row['fileid']."&name=".$row['name'].'"> Umbenennen</a> </td></tr>';
+                } ?> </tbody></table>
+
+        </div>
+        <div class="col-md-4">
+
+            <form class="text" method="POST" action="text.php">
+                <h3 style="padding-bottom: 8px;" >Notizen</h3>
+                <textarea style="padding: 10px;" name="text" cols="50" rows="10"><?php
+                    echo $_SESSION['text']; ?></textarea>
+                <input class="btn btn-link" type=submit name=submit value="Speichern">
+            </form>
 
         </div>
     </div>
 </div>
+
+</body>

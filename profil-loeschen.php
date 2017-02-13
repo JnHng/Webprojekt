@@ -74,6 +74,8 @@ if (isset ($_POST["Ja"])) {
         echo $e->getMessage();
     }
 
+    unlink();
+
     session_destroy();
 }
 

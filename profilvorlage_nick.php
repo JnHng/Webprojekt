@@ -2,16 +2,10 @@
 $site_title = "Profil";
 include "header.php";
 include "navigation.php";
-include "conn.php";
-
-$weiterleitungWennNichtAngemeldet="/~nl035/index.php";
-if($_SESSION['loginname'] == false) {header("Location: $weiterleitungWennNichtAngemeldet");}
+$ordner = "Profilbilder/";
 ?>
 
 <body>
-
-
-
 <div class="row">
     <div class="container">
     <div class="text-center" class="col-md-12">
@@ -26,10 +20,6 @@ if($_SESSION['loginname'] == false) {header("Location: $weiterleitungWennNichtAn
     </div>
     </div>
 </div>
-
-
-
-
 
 </body>
 

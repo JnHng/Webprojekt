@@ -1,9 +1,9 @@
 <?php
 
+include "header.php";
+
 if(isset($_GET["submit"])) {
 
-    session_start();
-    include "conn.php";
     $login = $_POST["loginname"];
     $passwort = $_POST["loginpasswort"];
     $hash = md5($passwort);
@@ -30,7 +30,7 @@ if(isset($_GET["submit"])) {
                 $_SESSION["email"] = $zeile->email;
                 echo $_SESSION["loginname"];
 
-                header('Location: dashboard.php');
+                header('Location: meine-dateien.php');
 
             }
 
