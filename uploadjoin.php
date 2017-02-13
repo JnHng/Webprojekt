@@ -39,26 +39,23 @@ if(isset($_POST['submit'])) {
     $gesamt = $ordner .  $indivdiual . $datei;
 
     if (empty($datei)) {
-        echo "Wählen Sie eine Datei aus";
+        echo "Wählen Sie eine Datei aus.";
         exit();
     }
 
 
     if ($size > $max) {
-        echo "Zu groß!";
+        echo "Ihre Datei ist zu groß!";
         exit();
     }
-    if (isset($datei)) {
-        echo "Ihre Datei " . basename($datei) . " wurde hochgeladen";
-    }
 
-    $wiederholung = $db->prepare("SELECT name FROM files WHERE name = :nurname");
-    $wiederholung->bindParam(':nurname', $nurname, PDO::PARAM_STR);
+    $wiederholung = $db->prepare("SELECT name FROM files WHERE name = :gesamt");
+    $wiederholung->bindParam(':gesamt', $gesamt, PDO::PARAM_STR);
     $wiederholung->execute();
     $alt = $wiederholung->fetch(PDO::FETCH_ASSOC);
 
     if($alt == true) {
-        echo 'Sie haben bereits eine Datei mit diesem Namen. �ndern Sie diese Datei um!<br>';
+        echo 'Sie haben bereits eine Datei mit diesem Namen. Ändern Sie den Dateinamen!';
         exit();
     }
 
@@ -70,6 +67,8 @@ if(isset($_POST['submit'])) {
         $sql->bindValue(':size', $size, PDO::PARAM_INT);
         $sql->bindValue(':login', $login, PDO::PARAM_STR);
         $sql->execute();
+
+        echo "Ihre Datei " . basename($datei) . " wurde hochgeladen.";
     }
 
     else {

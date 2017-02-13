@@ -1,25 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Illia
- * Date: 05.12.2016
- * Time: 12:10
- */
-
-
-
-session_start();
+$site_title = "Alles löschen";
+include "header.php";
+include "navigation.php";
 ?>
 
-    <!DOCTYPE html>
-
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Alle Files l�schen</title>
-        <link rel="stylesheet" href="style.css">
-        <?php  //include "ses2.php"; ?>
-    </head>
     <body>
 
 
@@ -43,19 +27,33 @@ if (isset ($_POST["Ja"])) {
 
     $login = $_SESSION['loginname'];
 
-    try {$loesch = $db->prepare("DELETE FROM files WHERE username = :login");
+    $deleteall = "SELECT name, username FROM files WHERE username='$login'";
+
+
+    $ergebnis = $db->query($deleteall);
+    while($row = $ergebnis->fetch(PDO::FETCH_ASSOC)){
+        //  echo $row['$login'].'/'.$row['name'].'<br/>';
+
+        unlink($row['name']);
+
+    }
+
+
+
+        $loesch = $db->prepare("DELETE FROM files WHERE username = :login");
         $loesch->bindParam(':login', $_SESSION['loginname'], PDO::PARAM_STR);
 
 
         $loesch->execute();
 
-        echo "All ihre Dateien wurden gelöscht! <br>";
 
-    } catch (PDOException $e) {
-        echo $e->getMessage();
-    }
+
+        echo "All ihre Dateien wurden gel�scht! <br>";
+
+
+
+
 }
-
 
 
 
