@@ -51,6 +51,29 @@ if (isset ($_POST["Ja"])) {
     $login = $_SESSION['loginname'];
 
     try {
+
+        $deleteall = "SELECT name, username FROM files WHERE username='$login'";
+
+
+        $ergebnis = $db->query($deleteall);
+        while($row = $ergebnis->fetch(PDO::FETCH_ASSOC)){
+
+            unlink($row['name']);
+
+        }
+
+        $loesch = $db->prepare("DELETE FROM files WHERE username = :login");
+        $loesch->bindParam(':login', $_SESSION['loginname'], PDO::PARAM_STR);
+
+
+        $loesch->execute();
+
+
+
+        echo "All ihre Dateien wurden gelöscht! <br>";
+
+
+
         $loesch = $db->prepare("DELETE FROM nutzer WHERE username = :login");
         $loesch->bindParam(':login', $_SESSION['loginname'], PDO::PARAM_STR);
 
@@ -73,8 +96,6 @@ if (isset ($_POST["Ja"])) {
     } catch (PDOException $e) {
         echo $e->getMessage();
     }
-
-    unlink();
 
     session_destroy();
 }
