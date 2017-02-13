@@ -35,7 +35,7 @@ if(isset($_GET["submit"])) {
             }
 
         } else {
-            echo "Nutzer nicht gefunden! Geben sie einen anderen Nutzernamen ein!";
+            echo "Nutzername oder Passwort falsch!";
         }
 
 

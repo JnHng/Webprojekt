@@ -1,37 +1,27 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Illia
- * Date: 05.12.2016
- * Time: 12:10
- */
-
-
-
-session_start();
-include "ses2.php";
+$site_title = "Alles löschen";
+include "header.php";
+include "navigation.php";
 ?>
 
-<!DOCTYPE html>
+    <body>
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Nutzer löschen</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <form class="text-center" class="change" method="POST" action="">
+                    <h3>Wollen Sie Ihr Profil wirklich löschen?</h3>
+                    <input class="btn btn-link" type=submit name="Ja" value="Ja, sicher!">
+                    <input class="btn btn-link" type=submit name="Nein" value="Nein, lieber doch nicht.">
+                </form>
+            </div>
+        </div>
+    </div>
 
 
-<form class="change" method="POST" action="">
-    <b>Wollen Sie ihr Profil und ihre Dateien wirklich unwiderruflich löschen?</b><br>
-    <br>
-    <input type=submit name="Ja" value="Ja!">
-    <br>
-    <input type=submit name="Nein" value="Nein!">
-</form>
-</body>
-</html>
+    </body>
+    </html>
+
 
 <?php
 
@@ -88,11 +78,9 @@ if (isset ($_POST["Ja"])) {
         $loesch->execute();
 
 
-        echo "Ihr Porfil und ihre Daten wurden gelöscht.<br> <a href=login.php>Zur Startseite</a><br>";
+        header ("Location: profil-geloescht.php");
 
-        /* $statement->execute(array("passwort1" => $passwort1, "id" => $id));
-         unset ($statement);
-         echo "Ihr Passwort wurde erfolgreich ge�ndert!<br>"; */
+
     } catch (PDOException $e) {
         echo $e->getMessage();
     }

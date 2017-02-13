@@ -32,10 +32,6 @@ if (isset ($_POST["Nein"])) {
 
 if (isset ($_POST["Ja"])) {
 
-
-    include "conn.php";
-
-
     $login = $_SESSION['loginname'];
     $fileid = $_GET['fileid'];
 

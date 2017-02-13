@@ -80,7 +80,7 @@ if (isset ($_POST["submit"])) {
         $fileupdate->execute();
         unset ($fileupdate);
 
-        echo ' Ihr Dateiname wurde erfolgreich ge�ndert. Zur�ck zu <a href="meine-dateien.php">dateien.php</a>';
+        echo ' Ihr Dateiname wurde erfolgreich ge�ndert. Zur�ck zu <a href="../meine-dateien.php">dateien.php</a>';
 
         /* $statement->execute(array("passwort1" => $passwort1, "id" => $id));
          unset ($statement);

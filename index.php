@@ -13,7 +13,7 @@ if($_SESSION['loginname'] == true) {
 <body>
 
 <div class="fluid-container">
-    <h1 class="text-center" style="padding-bottom: 20px;">Hi buddy, I'm Cloudia!</h1>
+    <h1 class="text-center" style="padding-bottom: 20px;">Hi ich bin Cloudia!</h1>
     <img style="padding-bottom: 20px;" src="https://s28.postimg.org/guqx9csnx/SKY.jpg" class="img-responsive" alt="Header">
     <h3 class="text-center">I am your digital backpack, where you can take your files everywhere you want with you!</h3>
 </div>

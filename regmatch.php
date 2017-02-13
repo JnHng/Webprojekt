@@ -1,7 +1,5 @@
 <?php
 
-include "header.php";
-
 if(isset($_POST["submit"])) {
     $username = $_POST["username"];
     $passwort1 = $_POST["passwort1"];

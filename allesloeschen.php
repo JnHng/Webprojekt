@@ -55,10 +55,7 @@ if (isset ($_POST["Ja"])) {
 
 
 
-    echo header("Location: meine-dateien.php");
-
-
-
+    header("Location: meine-dateien.php");
 
 }
 

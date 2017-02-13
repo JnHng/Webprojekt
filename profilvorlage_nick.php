@@ -15,8 +15,9 @@ $ordner = "Profilbilder/";
         <h4 class="text-center" style="padding-top: 10px"><?php echo "$login" ?></h4>
 
 
-        <a href="profilbild-upload.php">Neues Profilbild | </a>
-        <a href="passwort-change.php">Passwort ändern</a>
+        <a href="profilbild-upload.php">Neues Profilbild</a> |
+        <a href="passwort-change.php">Passwort ändern</a> |
+        <a href="profil-loeschen.php">Profil löschen</a>
     </div>
     </div>
 </div>

@@ -18,4 +18,7 @@ $ordner = "Profilbilder/";
 
         <div class="col-md-2">
 
-<div style="padding-top: 10px; "><img class=img-circle  src="<?php echo $ordner . $_SESSION['profilbild'] ?> "style="width: 70px; box-shadow: 0px 0px 15px grey;"></div></div>
+<div style="padding-top: 10px; ">
+    <img class=img-circle  src="<?php echo $ordner . $_SESSION['profilbild'] ?> "style="width: 60px; box-shadow: 0px 0px 15px grey;">
+</div>
+        </div>
