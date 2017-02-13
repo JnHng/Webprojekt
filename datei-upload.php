@@ -36,18 +36,16 @@ include "navigation.php";
                     $gesamt = $ordner .  $indivdiual . $datei;
 
                     if (empty($datei)) {
-                        echo "W�hlen Sie eine Datei aus";
+                        echo "Es wurde keine Datei ausgewählt.";
                         exit();
                     }
 
 
                     if ($size > $max) {
-                        echo "Zu gro�!";
+                        echo "Die Datei ist zu groß.";
                         exit();
                     }
-                    if (isset($datei)) {
-                        echo "Ihre Datei: '" . basename($datei) . "' ";
-                    }
+
 
                     $wiederholung = $db->prepare("SELECT name FROM files WHERE name = :nurname");
                     $wiederholung->bindParam(':nurname', $nurname, PDO::PARAM_STR);
@@ -55,13 +53,12 @@ include "navigation.php";
                     $alt = $wiederholung->fetch(PDO::FETCH_ASSOC);
 
                     if($alt == true) {
-                        echo 'Sie haben bereits eine Datei mit diesem Namen. �ndern Sie diese Datei um!<br>';
+                        echo 'Sie haben bereits eine Datei mit diesem Namen.<br>';
                         exit();
                     }
 
 
                     if (move_uploaded_file($tmp_datei, $ordner . $indivdiual . $datei)) {
-                        echo 'Coolio: <a href="' . $gesamt . '">' . $gesamt . '</a>';
                         $sql = $db->prepare("INSERT INTO files (name, typ, size, username) VALUES(:gesamt,:typ,:size,:login)");
                         $sql->bindParam(':gesamt', $gesamt, PDO::PARAM_STR);
                         $sql->bindParam(':typ', $typ, PDO::PARAM_STR);
@@ -70,11 +67,13 @@ include "navigation.php";
                         $sql->execute();
                     }
 
+                    if (isset($datei)) {
+                        echo "Ihre Datei ".basename($datei)." wurde hochgeladen.";
+                    }
+
                     else {
                         echo "Fehler!";
                     }
-
-                    //copy("file/$nurname", "file/$datei");
 
                 }
                 ?>

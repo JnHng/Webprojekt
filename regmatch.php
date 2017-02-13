@@ -19,8 +19,7 @@ if(isset($_POST["submit"])) {
         $new = $register->fetch(PDO::FETCH_ASSOC);
 
         if($new == true) {
-            echo 'Dieser Username ist bereits vergeben. Geben Sie einen anderen Namen ein.<br>';
-            exit();
+            header('Location: reg-namevergeben.php');
         }
 
         $sender = $db->prepare("SELECT * FROM nutzer WHERE email = :email");
@@ -29,12 +28,10 @@ if(isset($_POST["submit"])) {
         $neu = $sender->fetch(PDO::FETCH_ASSOC);
 
         if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            echo 'Keine g�ltige E-Mail-Adresse<br>';
-            exit();}
+            header('Location: reg-emailfehler');
 
         if($neu == true) {
-            echo 'Diese Mail ist bereits vergeben. Geben Sie einen anderen Namen ein.<br>';
-            exit();
+            header('Location: reg-emailfehler');
         }
 
         //new user
@@ -59,7 +56,7 @@ VALUES(:username,:hash, :email)");
 
 
         if ($register !== false) {
-            echo 'Herzlichen Glückwunsch! Sie haben sich soeben registriert! Melden Sie sich an.';
+            header('Location: reg-erfolg.php');
         } else {
             echo "Ein Fehler ist aufgetreten!";
         }
@@ -68,7 +65,7 @@ VALUES(:username,:hash, :email)");
 
     }
     else {
-        echo "Bitte alle Felder wie angegeben ausfüllen!";
+        header('Location: reg-felder.php');
     }
 }
 

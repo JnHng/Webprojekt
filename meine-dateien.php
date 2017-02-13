@@ -8,17 +8,12 @@ $ordner = "Profilbilder/";
 
 <body>
 
-
-
-
 <div class="container">
     <div class="row">
         <div class="col-md-8">
             <h3 style="padding-bottom: 10px" class="text-center">Meine Dateien</h3>
             <table class="table table-hover"><tbody>
                 <?php
-                $login = $_SESSION['loginname'];
-                $ordner = "uploads/";
 
                 $two_tables = "SELECT name, fileid FROM files WHERE username='$login' ORDER BY name";
 

@@ -35,12 +35,10 @@ if(isset($_GET["submit"])) {
             }
 
         } else {
-            echo "Nutzername oder Passwort falsch!";
+            header ('Location: login-falsch.php');
         }
 
 
-    } else {
-        echo "Bitte alle Felder ausf�llen!";
     }
 }
 
